@@ -1,1 +1,4 @@
-default: --format html --out report<%= ENV['TEST_ENV_NUMBER'] %>.html
+default:
+  EXEC_TYPE=local
+  BROWSER=CH
+  HUB_URL=http://127.0.0.1:4445/wd/hub

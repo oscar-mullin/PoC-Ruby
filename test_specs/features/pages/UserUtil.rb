@@ -1,4 +1,4 @@
-class Users
+class UserUtil
   @@users = Hash.new { |h,k| h[k] = {} }
   @@users['superadmin']['username'] = 'admin'
   @@users['superadmin']['password'] = 'farmtotable123'

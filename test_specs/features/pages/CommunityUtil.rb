@@ -1,4 +1,4 @@
-class Communities
+class CommunityUtil
 
   @@communities = Hash.new { |h,k| h[k] = {} }
   @@challengeTemplates = Hash.new { |h,k| h[k] = {} }
@@ -15,8 +15,8 @@ class Communities
   @@communities['Root Site']['url'] = "https://www.#{$versionUrl}.spigit.com/User/Login"
   @@communities['QABuilds Site']['url'] = "https://www.qabuilds.spigit.com/User/Login"
   @@communities['Wrong Site']['url'] = "https://nosite.#{$versionUrl}.spigit.com/User/Login"
-  # @@communities['Main Site Automation']['url'] = "https://www.qa391automation.spigit.com/User/Login"
-  # @@communities['Main Site Manual']['url'] = "https://www.qa391.spigit.com/User/Login"
+  # @@@communityUtil['Main Site Automation']['url'] = "https://www.qa391automation.spigit.com/User/Login"
+  # @@@communityUtil['Main Site Manual']['url'] = "https://www.qa391.spigit.com/User/Login"
 
   @@communities['Non-Challenge community - Propagation']['url'] = "https://chriscommunity1.#{$versionUrl}.spigit.com/User/Login"
   @@communities['Non-Challenge community - Propagation']['title'] = ":: Chris Community1 ::"

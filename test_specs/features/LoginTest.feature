@@ -2,27 +2,21 @@ Feature: LoginTest
 
   @Test
   Scenario Outline: Login into the site successfully
-    Given I navigate to the "<site>" login page
-    And I fill in "Username" field with the "<user>"'s username on "Login" page
-    And I fill in "Password" field with the "<user>"'s password on "Login" page
-    And I click on the "Sign In" button in "Login" page
+    Given I go to the "<site>" site
+    When I login with "<user>" username and "<password>" password
     Then I verify user is successfully logged in
   Examples:
-    | site      | user   |
-    | Main Site | admin1 |
+    | site      | user      | password      |
+    | Main Site | admin1    | Spigit.123    |
 
   @Test
   Scenario Outline: Login into the site unsuccessfully
-    Given I navigate to the "<site>" login page
-    When I fill in the "Username" field with "<wrong_username>" value on "Login" page
-    And I fill in "Password" field with the "<user>"'s password on "Login" page
-    And I click on the "Sign In" button in "Login" page
-    Then I verify that "Username or password you entered is incorrect." message is displayed in "Login" page
-    Given I navigate to the "<site>" login page
-    And I fill in "Username" field with the "<user>"'s username on "Login" page
-    And I fill in "Password" field with the "<user>"'s password on "Login" page
-    And I click on the "Sign In" button in "Login" page
+    Given I go to the "<site>" site
+    When I login with "<user>" username and "<wrong_username>" password
+    Then I verify user is unsuccessfully logged in
+    And I verify that "Username or password you entered is incorrect." message is displayed in "Login" page
+    When I login with "<user>" username and "<password>" password
     Then I verify user is successfully logged in
   Examples:
-    | site      | user   | wrong_username  |
-    | Main Site | admin1 | autoqa.1x       |
+    | site      | user   | wrong_username  | password      |
+    | Main Site | admin1 | autoqa.1x       | Spigit.123    |

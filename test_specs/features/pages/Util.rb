@@ -58,11 +58,11 @@ class Util < SitePrism::Page
   element :datepickernext_button, :xpath, ".//*[@id='ui-datepicker-div']//a[@title='Next']"
   element :datepickerprevious_button, :xpath, ".//*[@id='ui-datepicker-div']//a[@title='Prev']"
 
-  def setPageUrl (url)
-    self.class.set_url url
-    page.driver.browser.manage.window.maximize
-    self.load
-  end
+  # def getCommunity (url)
+  #   self.class.set_url url
+  #   page.driver.browser.manage.window.maximize
+  #   self.load
+  # end
 
   def getCurrentUser
     @@currentUser
@@ -207,8 +207,8 @@ class Util < SitePrism::Page
     retries = 0
     begin
       Gmail.connect(useraccount, password) do |gmail|
-      # @users = Users.new
-      # gmail = @users.getSession(useraccount, password)
+      # @@userUtil = UserUtil.new
+      # gmail = @@userUtil.getSession(useraccount, password)
         gmail.inbox.emails(:unread, :subject => subject).each do |email|
           puts "Looking for '#{subject}' in gmail account..."
           if email.body.to_s.include?(content) and email.body.to_s.include?($additionalContent)
@@ -267,8 +267,8 @@ class Util < SitePrism::Page
     retries = 0
     begin
       Gmail.connect(useraccount, password) do |gmail|
-      # @users = Users.new
-      # gmail = @users.getSession(useraccount, password)
+      # @@userUtil = UserUtil.new
+      # gmail = @@userUtil.getSession(useraccount, password)
         puts "Looking for '#{subject}' in gmail account..."
         gmail.inbox.emails(:unread, :subject => subject).each do |email|
           if email.body.to_s =~ /#{content}/m
@@ -291,12 +291,12 @@ class Util < SitePrism::Page
 
   # Method to retrieve the username according to User Experience Management configuration.
   def getUsernameAccordingUserExperienceManagementConfig(user)
-    @users = Users.new
-    username = @users.getUser(user, 'username')
-    firstname = @users.getUser(user, 'firstname')
-    lastname = @users.getUser(user, 'lastname')
-    nickname = @users.getUser(user, 'nickname').nil? ? '' : @users.getUser(user, 'nickname')
-    useremail = @users.getUser(user, 'email')
+    @userUtil = UserUtil.new
+    username = @userUtil.getUser(user, 'username')
+    firstname = @userUtil.getUser(user, 'firstname')
+    lastname = @userUtil.getUser(user, 'lastname')
+    nickname = @userUtil.getUser(user, 'nickname').nil? ? '' : @userUtil.getUser(user, 'nickname')
+    useremail = @userUtil.getUser(user, 'email')
     name = ($showfullname)? (firstname + ' ' + lastname) : username
     nick = ($shownickname)? (($showfullname)? (nickname + ' ' + lastname) : nickname): name
     email = ($showemail)? ', ' + useremail : ''
@@ -340,8 +340,8 @@ class Util < SitePrism::Page
     retries = 0
     begin
       Gmail.connect(useraccount, password) do |gmail|
-      # @users = Users.new
-      # gmail = @users.getSession(useraccount, password)
+      # @@userUtil = UserUtil.new
+      # gmail = @@userUtil.getSession(useraccount, password)
         puts "Looking for '#{subject}' email..."
 
         emails = gmail.inbox.emails(:unread, :subject => subject, :from => from_param, :on => Date.parse(date))
@@ -374,8 +374,8 @@ class Util < SitePrism::Page
     retries = 0
     begin
       Gmail.new(useraccount, password) do |gmail|
-      # @users = Users.new
-      # gmail = @users.getSession(useraccount, password)
+      # @@userUtil = UserUtil.new
+      # gmail = @@userUtil.getSession(useraccount, password)
         puts "Looking for '#{subject}' in gmail account..."
         gmail.inbox.emails(:unread,:subject => subject).each do |email|
           if emailscounter == 0 then
@@ -400,8 +400,8 @@ class Util < SitePrism::Page
     retries = 0
     begin
       Gmail.connect(useraccount, password) do |gmail|
-      # @users = Users.new
-      # gmail = @users.getSession(useraccount, password)
+      # @@userUtil = UserUtil.new
+      # gmail = @@userUtil.getSession(useraccount, password)
         puts "Looking for '#{subject}' in gmail account..."
         gmail.inbox.emails(:unread, :subject => subject).each do |email|
           if email.body.to_s.include?(content)
@@ -428,8 +428,8 @@ class Util < SitePrism::Page
     retries = 0
     begin
       Gmail.connect(useraccount, password) do |gmail|
-      # @users = Users.new
-      # gmail = @users.getSession(useraccount, password)
+      # @@userUtil = UserUtil.new
+      # gmail = @@userUtil.getSession(useraccount, password)
         puts "Looking for '#{subject}' in gmail account..."
         gmail.inbox.emails(:unread, :subject => subject).each do |email|
           if email.body.to_s.include?(content) and email.body.to_s.include?(user_addressed)

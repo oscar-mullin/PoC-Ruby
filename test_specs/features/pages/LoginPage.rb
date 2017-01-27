@@ -60,7 +60,7 @@ class LoginPage < SitePrism::Page
   end
 
   def fillValue(field, value)
-    @users = Users.new
+    @userUtil = UserUtil.new
     case field
       when 'Username' then
         username_field.set value
@@ -92,5 +92,10 @@ class LoginPage < SitePrism::Page
       else
         fail(ArgumentError.new("'#{message}' is not listed!"))
     end
+  end
+
+  def verifyUserLoggedSuccesfully()
+    @util.elementExistsOnTime('css', $css_verify_createcomm_last, 10)
+    return current_url.include?($homePage)
   end
 end

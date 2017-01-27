@@ -3,15 +3,19 @@ require 'selenium-webdriver'
 require 'capybara'
 require 'capybara/cucumber'
 require 'site_prism'
-#require 'site_prism/waiter'
 
-$browser = 'IE' # IE, CH, FF
+$homePage = '/Page/Home'
 
-  case $browser
+  case ENV['BROWSER']
     when 'CH' then
       Capybara.register_driver :chrome do |app|
         caps = Selenium::WebDriver::Remote::Capabilities.chrome('chromeOptions' => {'args' => [ '--disable-extensions' ]})
-        Capybara::Selenium::Driver.new(app, :browser => :remote, :url => 'http://127.0.0.1:4445/wd/hub', :desired_capabilities => caps)
+        if ENV['EXEC_TYPE']=='local'
+          Capybara::Selenium::Driver.new(app, :browser => :chrome, :desired_capabilities => caps)
+        else
+          Capybara::Selenium::Driver.new(app, :browser => :remote, :url => 'http://127.0.0.1:4445/wd/hub', :desired_capabilities => caps)
+        end
+
       end
       Capybara.default_driver = :chrome
       Capybara.javascript_driver = :chrome
@@ -22,7 +26,13 @@ $browser = 'IE' # IE, CH, FF
                                                                             :nativeEvents => false,
                                                                             :INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS => true,
                                                                             :IE_ENSURE_CLEAN_SESSION => true})
-        Capybara::Selenium::Driver.new(app, :browser => :remote, :url => 'http://127.0.0.1:4445/wd/hub', :desired_capabilities => caps)
+        if ENV['EXEC_TYPE']=='local'
+          Capybara::Selenium::Driver.new(app, :browser => :internet_explorer)
+        else
+          Capybara::Selenium::Driver.new(app, :browser => :remote, :url => 'http://127.0.0.1:4445/wd/hub', :desired_capabilities => caps)
+        end
+
+
       end
       Capybara.default_driver = :selenium
       Capybara.javascript_driver = :selenium
@@ -31,9 +41,12 @@ $browser = 'IE' # IE, CH, FF
       Capybara.register_driver :selenium do |app|
         #Capybara::Selenium::Driver.new(app, :browser => :firefox)
         caps = Selenium::WebDriver::Remote::Capabilities.firefox(:unexpectedAlertBehaviour => 'ignore')
-        Capybara::Selenium::Driver.new(app, :browser => :remote,
-                                       :url => 'http://127.0.0.1:4445/wd/hub',
-                                       :desired_capabilities => caps)
+        if ENV['EXEC_TYPE']=='local'
+          Capybara::Selenium::Driver.new(app, :browser => :firefox, :desired_capabilities => caps)
+        else
+          Capybara::Selenium::Driver.new(app, :browser => :remote,:url => 'http://127.0.0.1:4445/wd/hub',:desired_capabilities => caps)
+        end
+
       end
       Capybara.default_driver = :selenium
       Capybara.javascript_driver = :selenium
@@ -44,8 +57,9 @@ Before do |scenario|
 
   #region defined screen pages
   @loginpage = LoginPage.new
-  @users = Users.new
-  @communities = Communities.new
+  @userUtil = UserUtil.new
+  @communityUtil = CommunityUtil.new
+  @driverManager = DriverManager.new
   @util = Util.new
   #endregion
 

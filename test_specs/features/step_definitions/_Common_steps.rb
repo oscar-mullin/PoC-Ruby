@@ -1,8 +1,8 @@
 And(/^I fill in "([^"]*)" field with the "([^"]*)"'s (.*) on "([^"]*)" page$/) do |field, user, info, page|
   if info == 'fullname'
-    value = "#{@users.getUser(user,'firstname')} #{@users.getUser(user,'lastname')}"
+    value = "#{@userUtil.getUser(user,'firstname')} #{@userUtil.getUser(user,'lastname')}"
   else
-    value = @users.getUser(user, info)
+    value = @userUtil.getUser(user, info)
   end
   case page
     when 'Login' then
@@ -35,7 +35,8 @@ Then(/^I verify that "([^"]*)" message (is|is not) displayed in "([^"]*)" page$/
   displayed = is_displayed=='is'
   case page
     when 'Login' then
-      @loginpage.verifyMessage(message).should eq(displayed)
+      expect(@loginpage.verifyMessage(message)).to eq(displayed)
+
     else
       fail(ArgumentError.new("'#{page}' page is not listed."))
   end
