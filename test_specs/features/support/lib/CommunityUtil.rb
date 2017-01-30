@@ -16,6 +16,12 @@ class CommunityUtil
   @@communities['QABuilds Site']['url'] = "https://www.qabuilds.spigit.com/User/Login"
   @@communities['Wrong Site']['url'] = "https://nosite.#{$versionUrl}.spigit.com/User/Login"
 
+  def getCommunityData(comm_type, data_reference, data_type)
+    value = @comm_xml[data_reference][data_type]
+    puts "HERE: #{value}"
+    value
+  end
+
   def getCommunityUrl(community)
       @@communities[community]['url']
   end
