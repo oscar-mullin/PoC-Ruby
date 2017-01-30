@@ -1,6 +1,6 @@
 Given(/^I go to the "([^"]*)" site$/) do |site|
   @driverManager.getCommunity(@communityUtil.getCommunityUrl(site))
-  @util.setCurrentSite(site)
+  @siteutil.setCurrentSite(site)
 end
 
 Then(/^I verify user is (.*) logged in$/) do |expected|

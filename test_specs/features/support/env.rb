@@ -63,6 +63,7 @@ Before do |scenario|
   @driverManager = DriverManager.new
   @homepage = HomePage.new
   @util = Util.new
+  @siteutil = SiteUtil.new
   #endregion
 
 end
