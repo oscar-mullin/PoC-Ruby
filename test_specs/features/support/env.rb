@@ -61,6 +61,7 @@ Before do |scenario|
   @userUtil = UserUtil.new
   @communityUtil = CommunityUtil.new
   @driverManager = DriverManager.new
+  @homepage = HomePage.new
   @util = Util.new
   #endregion
 

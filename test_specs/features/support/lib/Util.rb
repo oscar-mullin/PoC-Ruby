@@ -1,4 +1,4 @@
-class Util < SitePrism::Page
+class Util
 
   element :stayonpage_link, :xpath, ".//div[@class='navigate-confirm-dialog']//a[text()='Stay on this page']"
   element :leavepage_link, :xpath, ".//div[@class='navigate-confirm-dialog']//a[text()='Leave this Page']"
@@ -6,80 +6,6 @@ class Util < SitePrism::Page
   element :datepickercurrentmonth_label, :xpath, ".//*[@id='ui-datepicker-div']//span[@class='ui-datepicker-month']"
   element :datepickernext_button, :xpath, ".//*[@id='ui-datepicker-div']//a[@title='Next']"
   element :datepickerprevious_button, :xpath, ".//*[@id='ui-datepicker-div']//a[@title='Prev']"
-
-  # def getCommunity (url)
-  #   self.class.set_url url
-  #   page.driver.browser.manage.window.maximize
-  #   self.load
-  # end
-
-  def getCurrentUser
-    @@currentUser
-  end
-
-  def setCurrentUser(user)
-    @@currentUser = user
-  end
-
-  def getCurrentIdea
-    @@currentIdea
-  end
-
-  def setCurrentIdea(idea)
-    @@currentIdea = idea
-  end
-
-  def getCurrentSite
-    @@currentSite
-  end
-
-  def setCurrentSite(site)
-    @@currentSite = site
-  end
-
-  def getIdeaTitle(idea)
-    if !$devmod
-      @@ideaTitles[idea]
-    else
-      return idea
-    end
-  end
-
-  def getIdeaTitleHash
-    @@ideaTitles
-  end
-
-  def setIdeaTitleHash(new_array)
-    @@ideaTitles = new_array
-  end
-
-  def addIdeaTitle(idea)
-    if !$devmod
-      suffix = (Time.now.to_f*1000).to_i.to_s
-      ideaTitle = idea + ' ' + suffix
-      @@ideaTitles[idea] = ideaTitle
-    else
-      return idea
-    end
-  end
-
-  def getCategoryTitle(category)
-    if !$devmod
-      @@categoryTitles[category]
-    else
-      return category
-    end
-  end
-
-  def addCategoryTitle(category)
-    if !$devmod
-      categoryTitle = Forgery('lorem_ipsum').words(5, :random => true).capitalize
-      @@categoryTitles[category] = categoryTitle
-      return categoryTitle
-    else
-      return category
-    end
-  end
 
   def waitForElement(selector, path, time)
     wait = Selenium::WebDriver::Wait.new(:timeout => time) # seconds
