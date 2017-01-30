@@ -1,0 +1,140 @@
+[
+  {
+    "uri": "features/LoginTest.feature",
+    "id": "logintest",
+    "keyword": "Feature",
+    "name": "LoginTest",
+    "description": "",
+    "line": 1,
+    "elements": [
+      {
+        "id": "logintest;login-into-the-site-successfully;;2",
+        "keyword": "Scenario Outline",
+        "name": "Login into the site successfully",
+        "description": "",
+        "line": 12,
+        "type": "scenario",
+        "tags": [
+          {
+            "name": "@Test",
+            "line": 3
+          }
+        ],
+        "before": [
+          {
+            "match": {
+              "location": "capybara-2.12.0/lib/capybara/cucumber.rb:12"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 29856
+            }
+          },
+          {
+            "match": {
+              "location": "capybara-2.12.0/lib/capybara/cucumber.rb:20"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 39185
+            }
+          },
+          {
+            "output": [
+              "TC Start time: 01/27/2017 18:36PM"
+            ],
+            "match": {
+              "location": "features/support/env.rb:41"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 123621
+            }
+          }
+        ],
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "I navigate to the \"Main Site\" login page",
+            "line": 12,
+            "match": {
+              "location": "features/step_definitions/Login_steps.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 16100899777
+            }
+          },
+          {
+            "keyword": "And ",
+            "name": "I fill in \"Username\" field with the \"admin1\"'s username on \"Login\" page",
+            "line": 12,
+            "match": {
+              "location": "features/step_definitions/_Common_steps.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 4425573393
+            }
+          },
+          {
+            "keyword": "And ",
+            "name": "I fill in \"Password\" field with the \"admin1\"'s password on \"Login\" page",
+            "line": 12,
+            "match": {
+              "location": "features/step_definitions/_Common_steps.rb:1"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 577777912
+            }
+          },
+          {
+            "keyword": "And ",
+            "name": "I click on the \"Sign In\" button in \"Login\" page",
+            "line": 12,
+            "match": {
+              "location": "features/step_definitions/_Common_steps.rb:16"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 11417911667
+            }
+          },
+          {
+            "keyword": "Then ",
+            "name": "I verify user is successfully logged in",
+            "line": 12,
+            "match": {
+              "location": "features/step_definitions/Login_steps.rb:6"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 240680114
+            }
+          }
+        ],
+        "after": [
+          {
+            "match": {
+              "location": "features/support/env.rb:53"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 88168
+            }
+          },
+          {
+            "match": {
+              "location": "capybara-2.12.0/lib/capybara/cucumber.rb:8"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 920274468
+            }
+          }
+        ]
+      }
+    ]
+  }
+]

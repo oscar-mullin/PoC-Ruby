@@ -5,6 +5,7 @@ require 'capybara/cucumber'
 require 'site_prism'
 
 $homePage = '/Page/Home'
+$browser = ENV['BROWSER'] # IE, CH, FF
 
   case ENV['BROWSER']
     when 'CH' then

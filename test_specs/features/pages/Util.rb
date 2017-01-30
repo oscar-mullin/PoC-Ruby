@@ -1,56 +1,5 @@
 class Util < SitePrism::Page
 
-  $xpath_verify_loginpage = ".//button[text()='Sign In']"
-  $xpath_verify_activitystream = ".//ul[@id='activitystream' and (.//li or .//div[@class='no-results'])]"
-  $xpath_verify_homepage = ".//*[contains(text(),'Headlines')]"
-  $css_verify_createcomm_step1 = '#subdomain'
-  $css_verify_createcomm_step2 = '#createCommWidgetFormStep2'
-  $css_verify_createcomm_step3 = '#createCommWidgetFormStep3'
-  $css_verify_createcomm_step4 = '#createCommWidgetFormStep4,#createCommWidgetFormStep5'
-  $css_verify_createcomm_step5 = '#createCommWidgetFormStep5'
-  $css_verify_createcomm_last = '.wysiwyg>h1,#activitystream>li,#activitystream>.no-results,.wysiwyg'
-  $css_verify_createdchallenge = '#challengeSettingInfo'
-  $css_verify_postcategorypage = '#content_ifr'
-  $css_verify_viewsectorpage = '#view_sector_widget_fresh .category-heading'
-  $css_verify_postideapage = '#idea-template iframe'
-  $css_verify_viewideapage = '#view_idea_fresh'
-  $css_verify_viewideaspage = '.list-results>div.loadingBar' #to verify loading bar is not displayed
-  $css_verify_postcommenttinymce = 'iframe'
-  $xpath_verify_movetocategory = ".//a[select[@name='newsectorid']]"
-  $css_verify_userslist = '#users_list'
-  $css_verify_administrationpage = '.admin .thumbnailsm>a'
-  $css_verify_dpapage = '#configTbl'
-  $css_verify_innovationmarketpage = '.communitylist'
-  $css_verify_edituserpage = '.roleListWrapper'
-  $css_verify_adduserpage = '#AdminAddUser'
-  $css_verify_pairwisedialog = '#pairwiseSettingsForm'
-  $css_verify_votingdialog = '#voteSettingsForm'
-  $css_verify_newchallengepage = '#post_site_challenge'
-  $css_verify_editchallengepage = '.challengePhaseProgress .bar .phase'
-  $css_verify_challengespage = '#siteChallengeViewPort>ul'
-  $css_verify_myprofilepage = '#tabified_user_profile_fresh ul>li'
-  $css_verify_ideapopup = '#ideaDetailsDialog'
-  $css_verify_evaluationtemplates = '#taskTemplatesFormId'
-  $css_verify_newevaltemplate = '#name[name=title],#templateTitle'
-  $css_verify_taskdialog = '#add-task-form'
-  $css_verify_posttaskdialog = '#post-task-form,#review-form,#evaluation-form,#evaluationfile_form'
-  $css_verify_create_form_page = '#evalForm'
-  $css_verify_leaderboard = '#best_of_the_best>.panel-body'
-  $css_verify_navigationdialog = '.navigate-confirm-dialog'
-  $xpath_verify_allreviews = ".//table[@class='thread']/tbody[tr[contains(.,'All Reviews')]]"
-  $css_verify_wait = '.css-not-found'
-
-  $css_verify_ideadetails_screen = 'sp-idea-details div.userIdeaContent'
-  $xpath_verify_home_screen = ".//div[sp-header[@title='home']]//sp-idea-list[.//ul or .//no-result-message]"
-  $xpath_verify_challdetails_screen = ".//div[sp-header[@title='challenge.overview']]//sp-idea-list[.//ul or .//no-result-message]"
-  $xpath_verify_login_successful = ".//*[text()='Home' or text()='Challenge Details' or @class='container landing-page ng-scope']"
-  $xpath_verify_viewideas_screen = ".//div[.//h1[text()='View Ideas']]//ul[@class='list-container']"
-  $xpath_verify_myideas_screen = ".//div[.//h1[text()='My Ideas']]//ul[@class='list-container']"
-  $xpath_verify_topinnovators_screen = ".//div[.//h1[text()='Top Innovators']]//ul[contains(@class,'list-container')]"
-  $xpath_verify_topideas_screen = ".//div[.//h1[text()='Most Popular']]//ul[contains(@class,'list-container')]"
-  $xpath_verify_activity_screen = ".//div[.//h1[text()='Activity' or text()='Recent Activities']]//ul[contains(@class,'list-container')]"
-  $xpath_verify_postidea_screen = ".//div[.//h1[text()='Post Idea']]//input[@id='title']"
-
   element :stayonpage_link, :xpath, ".//div[@class='navigate-confirm-dialog']//a[text()='Stay on this page']"
   element :leavepage_link, :xpath, ".//div[@class='navigate-confirm-dialog']//a[text()='Leave this Page']"
   element :datepickercurrentyear_label, :xpath, ".//*[@id='ui-datepicker-div']//span[@class='ui-datepicker-year']"
