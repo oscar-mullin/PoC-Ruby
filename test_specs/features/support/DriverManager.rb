@@ -1,10 +1,9 @@
 class DriverManager < SitePrism::Page
 
-  def getCommunity (url)
+  def loadUrl (url)
     self.class.set_url url
-    page.driver.browser.manage.window.maximize
     self.load
+    page.driver.browser.manage.window.maximize
   end
-
 
 end

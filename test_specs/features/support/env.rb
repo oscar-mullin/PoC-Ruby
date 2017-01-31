@@ -17,7 +17,7 @@ $browser = ENV['BROWSER'] # IE, CH, FF
         if ENV['EXEC_TYPE']=='local'
           Capybara::Selenium::Driver.new(app, :browser => :chrome, :desired_capabilities => caps)
         else
-          Capybara::Selenium::Driver.new(app, :browser => :remote, :url => 'http://127.0.0.1:4445/wd/hub', :desired_capabilities => caps)
+          Capybara::Selenium::Driver.new(app, :browser => :remote, :url => ENV['HUB_URL'], :desired_capabilities => caps)
         end
 
       end
@@ -33,7 +33,7 @@ $browser = ENV['BROWSER'] # IE, CH, FF
         if ENV['EXEC_TYPE']=='local'
           Capybara::Selenium::Driver.new(app, :browser => :internet_explorer)
         else
-          Capybara::Selenium::Driver.new(app, :browser => :remote, :url => 'http://127.0.0.1:4445/wd/hub', :desired_capabilities => caps)
+          Capybara::Selenium::Driver.new(app, :browser => :remote, :url => ENV['HUB_URL'], :desired_capabilities => caps)
         end
 
 
@@ -48,7 +48,7 @@ $browser = ENV['BROWSER'] # IE, CH, FF
         if ENV['EXEC_TYPE']=='local'
           Capybara::Selenium::Driver.new(app, :browser => :firefox, :desired_capabilities => caps)
         else
-          Capybara::Selenium::Driver.new(app, :browser => :remote,:url => 'http://127.0.0.1:4445/wd/hub',:desired_capabilities => caps)
+          Capybara::Selenium::Driver.new(app, :browser => :remote,:url => ENV['HUB_URL'],:desired_capabilities => caps)
         end
 
       end
