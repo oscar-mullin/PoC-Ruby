@@ -1,4 +1,4 @@
-class SiteUtil < SitePrism::Page
+class SiteUtil
   def getCurrentSite
     @@currentSite
   end
