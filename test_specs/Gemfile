@@ -1,0 +1,16 @@
+# frozen_string_literal: true
+source 'https://rubygems.org'
+
+gem 'cucumber', '~> 2.3.3'
+gem 'capybara', '~> 2.12.0'
+gem 'rspec', '~> 3.5.0'
+gem 'site_prism', '~> 2.9'
+gem 'selenium-webdriver', '~> 3.0.5'
+gem 'parallel_tests', '~> 2.13.0'
+#Deleted gems
+
+# This Gem was meant to be used for parallel testing, but was removed since 'parallel_tests' gem was the best option .
+# gem 'cukeforker', '~> 1.1.0'
+
+# This gem is meant to be used to read and write XML files, probably will be used to retrieve communities and users information.
+# gem 'xml-simple', '1.1.5'

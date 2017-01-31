@@ -3,8 +3,11 @@ require 'selenium-webdriver'
 require 'capybara'
 require 'capybara/cucumber'
 require 'site_prism'
+require 'xmlsimple'
 
-$homePage = '/Page/Home'
+@comm_xml = XmlSimple.xml_in('features/support/community_data.xml')
+puts "CHECK: #{@comm_xml}"
+$browser = ENV['BROWSER'] # IE, CH, FF
 
   case ENV['BROWSER']
     when 'CH' then
@@ -13,7 +16,7 @@ $homePage = '/Page/Home'
         if ENV['EXEC_TYPE']=='local'
           Capybara::Selenium::Driver.new(app, :browser => :chrome, :desired_capabilities => caps)
         else
-          Capybara::Selenium::Driver.new(app, :browser => :remote, :url => 'http://127.0.0.1:4445/wd/hub', :desired_capabilities => caps)
+          Capybara::Selenium::Driver.new(app, :browser => :remote, :url => ENV['HUB_URL'], :desired_capabilities => caps)
         end
 
       end
@@ -29,7 +32,7 @@ $homePage = '/Page/Home'
         if ENV['EXEC_TYPE']=='local'
           Capybara::Selenium::Driver.new(app, :browser => :internet_explorer)
         else
-          Capybara::Selenium::Driver.new(app, :browser => :remote, :url => 'http://127.0.0.1:4445/wd/hub', :desired_capabilities => caps)
+          Capybara::Selenium::Driver.new(app, :browser => :remote, :url => ENV['HUB_URL'], :desired_capabilities => caps)
         end
 
 
@@ -44,7 +47,7 @@ $homePage = '/Page/Home'
         if ENV['EXEC_TYPE']=='local'
           Capybara::Selenium::Driver.new(app, :browser => :firefox, :desired_capabilities => caps)
         else
-          Capybara::Selenium::Driver.new(app, :browser => :remote,:url => 'http://127.0.0.1:4445/wd/hub',:desired_capabilities => caps)
+          Capybara::Selenium::Driver.new(app, :browser => :remote,:url => ENV['HUB_URL'],:desired_capabilities => caps)
         end
 
       end
@@ -56,11 +59,11 @@ Before do |scenario|
   puts "TC Start time: #{Time.now.strftime('%m/%d/%Y %H:%M%p')}"
 
   #region defined screen pages
-  @loginpage = LoginPage.new
   @userUtil = UserUtil.new
   @communityUtil = CommunityUtil.new
-  @driverManager = DriverManager.new
-  @util = Util.new
+  @driverManager = DriverManager.new("")
+  @util = Utils.new("")
+  @siteutil = SiteUtil.new
   #endregion
 
 end
