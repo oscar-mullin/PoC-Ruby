@@ -49,7 +49,7 @@ In order to execute any command you need to open a command console from **test_s
         i.e.:
         bundle exec parallel_cucumber -n 2 features/LoginTest.feature --group-by scenarios
 
-**Note:** For Paralell execution you should start the Selenium Server **hub** and **node** on the corresponding machines using below commands:
+**Note:** For parallel execution you should start the Selenium Server **hub** and **node** on the corresponding machines using below commands:
 
 - Server:
 
@@ -63,17 +63,18 @@ In order to execute any command you need to open a command console from **test_s
 
 ## Contributing
 
- 1. Create your feature branch:
+ 1. Create your branch:
 
- `git checkout -b my-new-feature`
+ `git checkout -b my-branch`
  2. Commit your changes:
 
  `git commit -am 'Add some feature'`
  3. Push to the branch:
 
- `git push origin my-new-feature`
- 4. Submit a *pull request*
+ `git push origin my-branch`
+ 4. Submit a *pull request* to `development` branch 
 
 ## changelog
 
 01/31/2017 - Walter Ramirez - First Version
+01/31/2017 - Walter Ramirez - Updated ´Contributing´ section

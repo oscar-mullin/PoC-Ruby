@@ -1,15 +1,9 @@
 Given(/^I go to the "([^"]*)" site$/) do |site|
   @driverManager.loadUrl(@communityUtil.getCommunityUrl(site))
   @siteutil.setCurrentSite(site)
-
-end
-
-Then(/^I verify user is (.*) logged in$/) do |expected|
-  @loginpage.verifyUserIsLoggedIn
-
+  @loginpage = LoginPage.new(".//button[text()='Sign In']")
 end
 
 When(/^I login with "([^"]*)" username and "([^"]*)" password$/) do |user, password|
-  @loginpage = LoginPage.new
   @loginpage.loginToPage(user,password)
 end

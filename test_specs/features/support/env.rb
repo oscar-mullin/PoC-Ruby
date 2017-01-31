@@ -4,7 +4,6 @@ require 'capybara'
 require 'capybara/cucumber'
 require 'site_prism'
 
-$homePage = '/Page/Home'
 $browser = ENV['BROWSER'] # IE, CH, FF
 
   case ENV['BROWSER']
@@ -57,12 +56,10 @@ Before do |scenario|
   puts "TC Start time: #{Time.now.strftime('%m/%d/%Y %H:%M%p')}"
 
   #region defined screen pages
-  #@loginpage = LoginPage.new
   @userUtil = UserUtil.new
   @communityUtil = CommunityUtil.new
-  @driverManager = DriverManager.new
-  @homepage = HomePage.new
-  @util = Util.new
+  @driverManager = DriverManager.new("")
+  @util = Utils.new("")
   @siteutil = SiteUtil.new
   #endregion
 
