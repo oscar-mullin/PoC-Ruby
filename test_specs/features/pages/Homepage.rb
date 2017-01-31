@@ -84,10 +84,12 @@ class HomePage < SitePrism::Page
   element :termsandconditionregister_field, :xpath, "//input[@id='tnc']"
   #endregion
 
-  def verifyPageIsDisplayed()
+  def initialize()
     @util = Util.new
-    homePageDisplayed = @util.elementExistsOnTime("xpath", ".//body[@id='Home']", 10)
-    return homePageDisplayed
+    pageDisplayed = @util.elementExistsOnTime("xpath", ".//body[@id='Home']", 10)
+    if not(pageDisplayed) then
+      fail(ArgumentError.new("Error when accessing to Home Page."))
+    end
   end
 
 end

@@ -23,35 +23,24 @@ class LoginPage < SitePrism::Page
   element :signin_container, '.signin-container'
   element :rememberusername_checkbox, "input[ng-model='login.rememberUserName']"
 
-  def verifyPageIsDisplayed()
+  def initialize
     @util = Util.new
-    homePageDisplayed = @util.elementExistsOnTime("xpath", ".//button[text()='Sign In']", 10)
-    return homePageDisplayed
+    homePageDisplayed = @util.elementExistsOnTime("xpath", ".//button[text()='Sign In']", 20)
+    if not(homePageDisplayed) then
+      fail(ArgumentError.new("Error when accessing to Login Page."))
+    end
   end
 
   def loginToPage(user, password)
     @util = Util.new
     @userUtil = UserUtil.new
-    if verifyPageIsDisplayed then
-      username_field.set @userUtil.getUser(user, "username")
-      password_field.set password
-      signin_button.click
-    else
-      fail(ArgumentError.new("Error when loading Login Page."))
-    end
+    username_field.set @userUtil.getUser(user, "username")
+    password_field.set password
+    signin_button.click
   end
 
   def verifyUserIsLoggedIn()
     @homepage = HomePage.new
-    return @homepage.verifyPageIsDisplayed
-  end
-
-  def verifyMessage(message)
-    @util = Util.new
-    @util.elementExistsOnTime('css', '.alert-danger', 6)
-    within errormessage_container do
-      return has_text?(message)
-    end
   end
 
 end

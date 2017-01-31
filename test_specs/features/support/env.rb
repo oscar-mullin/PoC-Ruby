@@ -60,7 +60,7 @@ Before do |scenario|
   puts "TC Start time: #{Time.now.strftime('%m/%d/%Y %H:%M%p')}"
 
   #region defined screen pages
-  @loginpage = LoginPage.new
+  #@loginpage = LoginPage.new
   @userUtil = UserUtil.new
   @communityUtil = CommunityUtil.new
   @driverManager = DriverManager.new
