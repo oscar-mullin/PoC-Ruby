@@ -3,10 +3,7 @@ require 'selenium-webdriver'
 require 'capybara'
 require 'capybara/cucumber'
 require 'site_prism'
-require 'xmlsimple'
 
-@comm_xml = XmlSimple.xml_in('features/support/community_data.xml')
-puts "CHECK: #{@comm_xml}"
 $browser = ENV['BROWSER'] # IE, CH, FF
 
   case ENV['BROWSER']
