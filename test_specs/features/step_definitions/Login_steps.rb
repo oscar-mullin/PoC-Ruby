@@ -1,5 +1,5 @@
 Given(/^I go to the "([^"]*)" site$/) do |site|
-  @driverManager.getCommunity(@communityUtil.getCommunityUrl(site))
+  @driverManager.loadUrl(@communityUtil.getCommunityUrl(site))
   @siteutil.setCurrentSite(site)
 
 end
