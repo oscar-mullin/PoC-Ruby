@@ -1,0 +1,1 @@
+java -Dwebdriver.ie.driver="D:\Installers\Ruby Resources\IEDriverServer.exe" -Dwebdriver.chrome.driver="D:\Installers\Ruby Resources\chromedriver_win32\chromedriver.exe" -jar "D:\Installers\Ruby Resources\selenium-server-standalone-3.0.1.jar" -role node -hub http://192.168.121.33:4444/grid/register -port 4445

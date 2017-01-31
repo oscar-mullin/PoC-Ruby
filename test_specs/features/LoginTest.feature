@@ -1,16 +1,16 @@
 Feature: LoginTest
 
   @Test
-  Scenario Outline: Login into the site successfully
+  Scenario Outline: Login to the site successfully
     Given I go to the "<site>" site
     When I login with "<user>" username and "<password>" password
     Then I verify user is successfully logged in
   Examples:
     | site      | user      | password      |
-    | Main Site | admin1    | Spigit.123    |
+    | Main Site | member1   | Spigit.123    |
 
   @Test
-  Scenario Outline: Login into the site unsuccessfully
+  Scenario Outline: Login to the site unsuccessfully
     Given I go to the "<site>" site
     When I login with "<user>" username and "<wrong_username>" password
     Then I verify user is unsuccessfully logged in
@@ -18,5 +18,5 @@ Feature: LoginTest
     When I login with "<user>" username and "<password>" password
     Then I verify user is successfully logged in
   Examples:
-    | site      | user   | wrong_username  | password      |
-    | Main Site | admin1 | autoqa.1x       | Spigit.123    |
+    | site      | user    | wrong_username  | password      |
+    | Main Site | member1 | autoqa.1x       | Spigit.123    |
