@@ -23,24 +23,23 @@ class LoginPage < SitePrism::Page
   element :signin_container, '.signin-container'
   element :rememberusername_checkbox, "input[ng-model='login.rememberUserName']"
 
-  def initialize
-    @util = Util.new
-    homePageDisplayed = @util.elementExistsOnTime("xpath", ".//button[text()='Sign In']", 20)
-    if not(homePageDisplayed) then
-      fail(ArgumentError.new("Error when accessing to Login Page."))
-    end
-  end
-
   def loginToPage(user, password)
-    @util = Util.new
+    @util = Utils.new("")
     @userUtil = UserUtil.new
     username_field.set @userUtil.getUser(user, "username")
     password_field.set password
     signin_button.click
+    @homepage = HomePage.new(".//body[@id='Home']")
+    return @homepage
   end
 
-  def verifyUserIsLoggedIn()
-    @homepage = HomePage.new
+  def verifyMessage(message)
+    @util = Utils.new
+    @util.elementExistsOnTime('css', '.alert-danger', 6)
+    within errormessage_container do
+      return has_text?(message)
+    end
   end
+
 
 end

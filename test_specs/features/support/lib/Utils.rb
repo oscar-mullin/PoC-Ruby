@@ -1,4 +1,4 @@
-class Util < SitePrism::Page
+class Utils < SitePrism::Page
 
   element :datepickercurrentyear_label, :xpath, ".//*[@id='ui-datepicker-div']//span[@class='ui-datepicker-year']"
   element :datepickercurrentmonth_label, :xpath, ".//*[@id='ui-datepicker-div']//span[@class='ui-datepicker-month']"
@@ -16,6 +16,16 @@ class Util < SitePrism::Page
             has_css?(path)
           when 'text' then
             has_text?(path)
+          when 'button' then
+            has_button?(path)
+          when 'checked_field' then
+            has_checked_field?(path)
+          when 'field' then
+            has_field?(path)
+          when 'link' then
+            has_link?(path)
+          when 'select' then
+            has_select?(path)
         end
       }
     rescue
@@ -34,6 +44,16 @@ class Util < SitePrism::Page
             has_css?(path)
           when 'text' then
             has_text?(path)
+          when 'button' then
+            has_button?(path)
+          when 'checked_field' then
+            has_checked_field?(path)
+          when 'field' then
+            has_field?(path)
+          when 'link' then
+            has_link?(path)
+          when 'select' then
+            has_select?(path)
         end
       }
     rescue
