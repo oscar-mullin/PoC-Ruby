@@ -36,7 +36,7 @@ Run below commands from a cmd console in order to complete the installation of a
 4. Include **"<JAVA_HOME>\bin"** bin directory to the Environment Variables, where **<JAVA_HOME>** denotes the JDK installed directory
 
 #### Selenium Server & Browser Drivers
-In order to have a successful execution of your tests, you should download latest versions of Selenium Server & Browser Drivers, and include them to the Environment Variables following below steps:
+Download latest versions of Selenium Server & Browser Drivers, and include them to the Environment Variables following below steps:
 
 1. Download the latest Selenium Server Standalone jar from [Selenium HQ](http://docs.seleniumhq.org/download/) web page
 
@@ -46,13 +46,13 @@ In order to have a successful execution of your tests, you should download lates
 
 3. Unzip if needed and copy all files into a folder (e.g., "C:\Drivers")
 
-4. Include Drivers directory to the *PATH* Environment Variables 
+4. Include *Drivers* directory to the *PATH* Environment Variable
 
 **Note:** For Parallel execution you should repeat below steps for the **hub** and each **node** machines
 
 ## Usage
 
-In order to execute any command you need to open a command console from **test_specs** folder and execute one of below commands:
+In order to execute any command you should open a command console, navigate to **test_specs** folder and execute one of below commands:
 
 - Execute a feature on a **single thread**:
 
@@ -95,6 +95,6 @@ Further, If you want to use a different Machine to the **hub**, you should repla
 
 ## changelog
 
-01/31/2017 - Walter Ramirez - First Version
-01/31/2017 - Walter Ramirez - Updated ´Contributing´ section
-02/01/2017 - Walter Ramirez - Included Java and Browser Drivers
+- 01/31/2017 - Walter Ramirez - First Version
+- 01/31/2017 - Walter Ramirez - Updated ´Contributing´ section
+- 02/01/2017 - Walter Ramirez - Included Java and Browser Drivers
