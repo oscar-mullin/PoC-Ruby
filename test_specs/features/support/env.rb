@@ -60,21 +60,19 @@ Before do |scenario|
   #region defined screen pages
   @userUtil = UserUtil.new
   @communityUtil = CommunityUtil.new
-  @driverManager = DriverManager.new("","",0)
+  @driverManager = DriverManager.new('','',0)
   @siteutil = SiteUtil.new
   #endregion
-
 end
 
 After do |scenario|
   if scenario.failed?
     case scenario
-      when Cucumber::Core::Ast::Examples
-        @scenario_name = scenario.scenario_outline.name
       when Cucumber::Core::Ast::Scenario
         @scenario_name = scenario.name
       else
-        raise('Unhandled class')
+        @scenario_name = scenario.scenario_outline.name
+        #raise('Unhandled class')
     end
     sw = page.driver.browser
     encoded_img = sw.screenshot_as(:base64)
