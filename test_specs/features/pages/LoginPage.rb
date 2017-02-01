@@ -24,13 +24,11 @@ class LoginPage < SitePrism::Page
   element :rememberusername_checkbox, "input[ng-model='login.rememberUserName']"
 
   def login(username, password, successful_login)
-    #@util = Utils.new("")
     username_field.set username
     password_field.set password
     signin_button.click
     if successful_login
-      @homepage = HomePage.new(".//body[@id='Home']")
-      return @homepage
+      @homepage = HomePage.new(".//body[@id='Home']","xpath",10)
     end
   end
 
@@ -64,7 +62,7 @@ class LoginPage < SitePrism::Page
   end
 
   def verifyMessage(message)
-    @util = Utils.new("")
+    @util = Utils.new("","",0)
     @util.elementExistsOnTime('css', '.alert-danger', 6)
     within errormessage_container do
       return has_text?(message)

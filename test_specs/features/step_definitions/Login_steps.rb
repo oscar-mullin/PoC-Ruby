@@ -1,7 +1,7 @@
 Given(/^I go to the "([^"]*)" site$/) do |site|
   @driverManager.loadUrl(@communityUtil.getCommunityUrl(site))
   @siteutil.setCurrentSite(site)
-  @loginpage = LoginPage.new(".//button[text()='Sign In']")
+  @loginpage = LoginPage.new(".//button[text()='Sign In']","xpath",20)
 end
 
 When(/^I login with "([^"]*)" (incorrect |)username and "([^"]*)" (incorrect |)password$/) do |username, incorrect_username, password, incorrect_password|
@@ -12,7 +12,7 @@ end
 Given(/^I login to "([^"]*)" community with "([^"]*)" user$/) do |site, user|
   @driverManager.loadUrl(@communityUtil.getCommunityUrl(site))
   @siteutil.setCurrentSite(site)
-  @loginpage = LoginPage.new(".//button[text()='Sign In']")
+  @loginpage = LoginPage.new(".//button[text()='Sign In']","xpath",20)
   @loginpage.loginWithReferences(user)
 end
 
@@ -30,11 +30,11 @@ And(/^I verify "([^"]*)" text is displayed on the '(Forgot Username|Forgot Passw
     final_text = text.gsub(text[/(\[.*\])....@/,1], user_email[0,1])
     final_text = final_text.gsub(final_text[/@(\[.*\])/,1], user_email[/@(.*)/,1])
   end
-  @loginpage.verifyForgotUsernamePwdText(final_text).should eq(true)
+  expect(@loginpage.verifyForgotUsernamePwdText(final_text)).to eq(true)
 end
 
 And(/^I verify that 'Return to (login|sign in)' link is displayed in '(Forgot Username|Forgot Password)' page$/) do |_,_|
-  @loginpage.verifyReturnToSignInLink.should eq(true)
+  expect(@loginpage.verifyReturnToSignInLink).to eq(true)
 end
 
 And(/^I verify "([^"]*)" user received an email with "([^"]*)" subject$/) do |user, subject|

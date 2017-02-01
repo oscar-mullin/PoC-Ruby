@@ -3,8 +3,10 @@ require 'selenium-webdriver'
 require 'capybara'
 require 'capybara/cucumber'
 require 'site_prism'
+require 'gmail'
 
 $browser = ENV['BROWSER'] # IE, CH, FF
+
 
   case ENV['BROWSER']
     when 'CH' then
@@ -58,8 +60,7 @@ Before do |scenario|
   #region defined screen pages
   @userUtil = UserUtil.new
   @communityUtil = CommunityUtil.new
-  @driverManager = DriverManager.new("")
-  @util = Utils.new("")
+  @driverManager = DriverManager.new("","",0)
   @siteutil = SiteUtil.new
   #endregion
 

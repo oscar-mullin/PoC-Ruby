@@ -1,4 +1,3 @@
-require 'gmail'
 
 class EmailManager
 
