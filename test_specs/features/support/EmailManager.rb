@@ -1,14 +1,12 @@
 
 class EmailManager
 
-  def getNoEmailsByContent(wait_time, useraccount, password, subject, content)
-    sleep 10
+  def getNoEmailsByContent(sleep_wait_time, useraccount, password, subject, content)
+    sleep sleep_wait_time
     emailscounter = 0
     retries = 0
     begin
       Gmail.connect(useraccount, password) do |gmail|
-      # @@userUtil = UserUtil.new
-      # gmail = @@userUtil.getSession(useraccount, password)
         puts "Looking for '#{subject}' in gmail account..."
         gmail.inbox.emails(:unread, :subject => subject).each do |email|
           if email.body.to_s.include?(content)
