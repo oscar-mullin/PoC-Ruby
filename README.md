@@ -24,10 +24,11 @@ Run below commands from a cmd console in order to complete the installation of a
 
         gem install cucumber -v 2.4.0
         gem install capybara -v 2.12.0
-        gem install rspec -v 3.5.0'
+        gem install rspec -v 3.5.0
         gem install site_prism -v 2.9
         gem install selenium-webdriver -v 3.0.5
         gem install parallel_tests -v 2.13.0
+        gem install gmail
 
 #### Java Development Kit
 1. Download Java SE Development Kit 8 from [orale.com](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) web page
@@ -96,5 +97,4 @@ Further, If you want to use a different Machine to the **hub**, you should repla
 ## changelog
 
 - 01/31/2017 - Walter Ramirez - First Version
-- 01/31/2017 - Walter Ramirez - Updated ´Contributing´ section
 - 02/01/2017 - Walter Ramirez - Included Java and Browser Drivers
