@@ -15,24 +15,6 @@ class CommunityUtil
   @@communities['Root Site']['url'] = "https://www.#{$versionUrl}.spigit.com/User/Login"
   @@communities['QABuilds Site']['url'] = "https://www.qabuilds.spigit.com/User/Login"
   @@communities['Wrong Site']['url'] = "https://nosite.#{$versionUrl}.spigit.com/User/Login"
-  # @@@communityUtil['Main Site Automation']['url'] = "https://www.qa391automation.spigit.com/User/Login"
-  # @@@communityUtil['Main Site Manual']['url'] = "https://www.qa391.spigit.com/User/Login"
-
-  @@communities['Non-Challenge community - Propagation']['url'] = "https://chriscommunity1.#{$versionUrl}.spigit.com/User/Login"
-  @@communities['Non-Challenge community - Propagation']['title'] = ":: Chris Community1 ::"
-  @@communities['Challenge with Custom Idea Template and w/o cat MCHM-017']['url'] = "https://qachrischallenge11.#{$versionUrl}.spigit.com/User/Login"
-  @@communities['Challenge with Custom Idea Template and w/o cat MCHM-017']['title'] = "QA Chris Challenge 11"
-  @@communities['Non-Challenge community - Propagation A']['url'] = "https://chriscommunity2.#{$versionUrl}.spigit.com/User/Login"
-  @@communities['Non-Challenge community - Propagation A']['title'] = ":: Chris Community2 ::"
-  @@communities['Non-Challenge community - Post Idea']['url'] = "https://automycat486.#{$versionUrl}.spigit.com/User/Login"
-  @@communities['Non-Challenge community - Post Idea']['title'] = "Auto Mycat 486"
-
-  @@stagenames['Non-Challenge community - View Ideas']['First'] = 'First nisl duis'
-  @@stagenames['Non-Challenge community - View Ideas']['Second'] = 'Validation'
-  @@stagenames['Non-Challenge community - View Ideas']['Third'] = 'Emergence'
-  @@stagenames['Non-Challenge community - View Ideas']['Custom'] = 'Accepted'
-  @@stagenames['Non-Challenge community - View Ideas']['Accepted'] = 'Closed'
-  @@stagenames['Non-Challenge community - View Ideas']['Closed'] = 'Custom Stage'
 
   def getCommunityUrl(community)
       @@communities[community]['url']
