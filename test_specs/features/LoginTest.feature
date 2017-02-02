@@ -34,3 +34,22 @@ Feature: Login
   Examples:
     | site      | user    |
     | Main Site | member1 |
+
+  @P1
+  Scenario Outline: Verify failed test case result on report
+    Given I go to the "<site>" site
+    When I login to "<site>" community with "<user>" user
+    Then I perform an unexpected action
+  Examples:
+    | site      | user    |
+    | Main Site | member1 |
+
+  # Known Issue: ENG-6011 3.8.3 - Login Pages - Email is not validated on 'Forgot Username' page
+  @P1
+  Scenario Outline: SI-008/ASI-01- Sign In - Verify that the 'Email' is validated (Private Site|Invalid Email Address)
+    Given I go to the "<site>" site
+    When I attempt to make a Forgot Username request with "<wrong_email>" wrong email
+    Then I verify that "The email address you entered is not valid. Please try again" message is displayed in "Forgot Username" page
+  Examples:
+    | site      | wrong_email           |
+    | Main Site | webadmin.spigitx.com  |
