@@ -431,6 +431,14 @@ class UserUtil
   @@users['tempuser40']['emailpsw'] = 'Admin1234@'
 
 
+  def getCurrentUser
+    @@currentUser
+  end
+
+  def setCurrentUser(user)
+    @@currentUser = user
+  end
+
   def getUser(user, info)
     @@users[user][info]
   end

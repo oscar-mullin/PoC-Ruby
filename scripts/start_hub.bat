@@ -1,0 +1,1 @@
+java -jar "D:\Installers\Ruby Resources\selenium-server-standalone-3.0.1.jar" -role hub

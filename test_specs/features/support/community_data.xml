@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+	<engage version="web">
+		<communities type="non-challenge">
+			<community reference="Main Site">
+				<title>:: Chris Community 12::</title>
+				<url>https://chriscommunity12.qa392.spigit.com</url>
+			</community>
+		</communities>
+	</engage>

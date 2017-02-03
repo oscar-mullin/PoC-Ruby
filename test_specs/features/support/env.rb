@@ -3,8 +3,10 @@ require 'selenium-webdriver'
 require 'capybara'
 require 'capybara/cucumber'
 require 'site_prism'
+require 'gmail'
 
-$homePage = '/Page/Home'
+$browser = ENV['BROWSER'] # IE, CH, FF
+
 
   case ENV['BROWSER']
     when 'CH' then
@@ -13,7 +15,7 @@ $homePage = '/Page/Home'
         if ENV['EXEC_TYPE']=='local'
           Capybara::Selenium::Driver.new(app, :browser => :chrome, :desired_capabilities => caps)
         else
-          Capybara::Selenium::Driver.new(app, :browser => :remote, :url => 'http://127.0.0.1:4445/wd/hub', :desired_capabilities => caps)
+          Capybara::Selenium::Driver.new(app, :browser => :remote, :url => ENV['HUB_URL'], :desired_capabilities => caps)
         end
 
       end
@@ -29,7 +31,7 @@ $homePage = '/Page/Home'
         if ENV['EXEC_TYPE']=='local'
           Capybara::Selenium::Driver.new(app, :browser => :internet_explorer)
         else
-          Capybara::Selenium::Driver.new(app, :browser => :remote, :url => 'http://127.0.0.1:4445/wd/hub', :desired_capabilities => caps)
+          Capybara::Selenium::Driver.new(app, :browser => :remote, :url => ENV['HUB_URL'], :desired_capabilities => caps)
         end
 
 
@@ -44,7 +46,7 @@ $homePage = '/Page/Home'
         if ENV['EXEC_TYPE']=='local'
           Capybara::Selenium::Driver.new(app, :browser => :firefox, :desired_capabilities => caps)
         else
-          Capybara::Selenium::Driver.new(app, :browser => :remote,:url => 'http://127.0.0.1:4445/wd/hub',:desired_capabilities => caps)
+          Capybara::Selenium::Driver.new(app, :browser => :remote,:url => ENV['HUB_URL'],:desired_capabilities => caps)
         end
 
       end
@@ -56,24 +58,21 @@ Before do |scenario|
   puts "TC Start time: #{Time.now.strftime('%m/%d/%Y %H:%M%p')}"
 
   #region defined screen pages
-  @loginpage = LoginPage.new
   @userUtil = UserUtil.new
   @communityUtil = CommunityUtil.new
-  @driverManager = DriverManager.new
-  @util = Util.new
+  @driverManager = DriverManager.new('','',0)
+  @siteutil = SiteUtil.new
   #endregion
-
 end
 
 After do |scenario|
   if scenario.failed?
     case scenario
-      when Cucumber::Core::Ast::Examples
-        @scenario_name = scenario.scenario_outline.name
       when Cucumber::Core::Ast::Scenario
         @scenario_name = scenario.name
       else
-        raise('Unhandled class')
+        @scenario_name = scenario.scenario_outline.name
+        #raise('Unhandled class')
     end
     sw = page.driver.browser
     encoded_img = sw.screenshot_as(:base64)

@@ -34,7 +34,7 @@ end
 Then(/^I verify that "([^"]*)" message (is|is not) displayed in "([^"]*)" page$/) do |message, is_displayed, page|
   displayed = is_displayed=='is'
   case page
-    when 'Login' then
+    when 'Login','Forgot Username' then
       expect(@loginpage.verifyMessage(message)).to eq(displayed)
 
     else
