@@ -52,3 +52,11 @@ And(/^I verify "([^"]*)" user received an email with "([^"]*)" subject$/) do |us
   end
   fail(ArgumentError.new("No '#{subject}' email was received!")) unless @inboxemails >= 1
 end
+
+When(/^I attempt to make a Forgot Username request with "([^"]*)" wrong email$/) do |wrong_email|
+  @loginpage.attemptToMakeForgotUsernameRequestWithWrongEmail(wrong_email)
+end
+
+Then(/^I perform an unexpected action$/) do
+  fail(ArgumentError.new('An unexpected action was made on Engage web app.'))
+end

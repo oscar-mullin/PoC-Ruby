@@ -44,6 +44,12 @@ class LoginPage < SitePrism::Page
     submit_button.click
   end
 
+  def attemptToMakeForgotUsernameRequestWithWrongEmail(wrong_email)
+    reset_username_link.click
+    forgotusername_email_field.set wrong_email
+    submit_button.click
+  end
+
   def makeForgotPasswordRequest(user)
     @userUtil = UserUtil.new
     reset_password_link.click
