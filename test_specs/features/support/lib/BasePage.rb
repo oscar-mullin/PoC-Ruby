@@ -4,7 +4,7 @@ module SitePrism
   class Page
 
     def initialize(locator, locator_type,time)
-      if not locator.empty? and not locator_type.empty?
+      unless locator.empty? and locator_type.empty?
         wait = Selenium::WebDriver::Wait.new(:timeout => time) # seconds
         begin
           wait.until {
