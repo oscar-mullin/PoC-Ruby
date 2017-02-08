@@ -6,6 +6,9 @@ class ColorPickerPage < SitePrism::Page
     hex_color_field.value
   end
 
+  ##
+  # @param [String] color   Color's hex code
+  #
   def fillHexColorField(color)
     hex_color_field.set color
   end

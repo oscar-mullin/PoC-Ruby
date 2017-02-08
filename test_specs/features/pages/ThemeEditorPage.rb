@@ -20,6 +20,9 @@ class ThemeEditorPage < SitePrism::Page
     return ColorPickerPage.new('','',0)
   end
 
+  ##
+  # @param [String] color   Color's hex code
+  #
   def changeBrandColor(color)
     colorPickerPage = clickBrandColorButton
     colorPickerPage.fillHexColorField(color)
@@ -30,6 +33,9 @@ class ThemeEditorPage < SitePrism::Page
     return ColorPickerPage.new('','',0)
   end
 
+  ##
+  # @param [String] color   Color's hex code
+  #
   def changeButtonTextColor(color)
     colorPickerPage = clickButtonTextColorButton
     colorPickerPage.fillHexColorField(color)
@@ -40,6 +46,9 @@ class ThemeEditorPage < SitePrism::Page
     return ColorPickerPage.new('','',0)
   end
 
+  ##
+  # @param [String] color   Color's hex code
+  #
   def changeLinkColor(color)
     colorPickerPage = clickLinkColorButton
     colorPickerPage.fillHexColorField(color)
@@ -50,6 +59,9 @@ class ThemeEditorPage < SitePrism::Page
     return ColorPickerPage.new('','',0)
   end
 
+  ##
+  # @param [String] color   Color's hex code
+  #
   def changeNavbarTextColor(color)
     colorPickerPage = clickNavbarTextColorButton
     colorPickerPage.fillHexColorField(color)
@@ -71,14 +83,18 @@ class ThemeEditorPage < SitePrism::Page
     confirm_cancel_link.click
   end
 
-  # To verify different messages
+  ##
+  # @param [String] text    Message to verify
+  #
   def verifyMessage(text)
     within message_container do
       return has_text?(text)
     end
   end
 
-  # path: image's absolute path
+  ##
+  # @param [String] path    Image's absolute path
+  #
   def attachLogo(path)
     attach_file('logo', path)
   end
