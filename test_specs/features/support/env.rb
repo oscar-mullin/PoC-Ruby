@@ -8,7 +8,12 @@ require 'report_builder'
 
 $browser = ENV['BROWSER'] # IE, CH, FF
 
+Dir::mkdir('output') if not File.directory?('output')
+Dir::mkdir('output/screenshots') if not File.directory?('output/screenshots')
 
+# TARGET = web, web_saucelabs, mobile, mobile_saucelabs
+case ENV['TARGET']
+  when 'web'
   case ENV['BROWSER']
     when 'CH' then
       Capybara.register_driver :chrome do |app|
@@ -55,6 +60,22 @@ $browser = ENV['BROWSER'] # IE, CH, FF
       Capybara.javascript_driver = :selenium
   end
 
+  when 'bstack' then
+    caps = Selenium::WebDriver::Remote::Capabilities.new
+    caps["browser"] = "#{ENV['BROWSER']}"
+    caps["browser_version"] = "7.0"
+    caps["os"] = "Windows"
+    caps["os_version"] = "XP"
+    caps["browserstack.debug"] = "true"
+    caps["name"] = "Spigit BS Tests"
+
+    Capybara.default_driver = Selenium::WebDriver.for(:remote,
+      :url => "http://walterramirez2:2VPEZp2WfGDL4XCxbRhT@hub-cloud.browserstack.com/wd/hub",
+      # :url => "http://alexandrchikanov1:DAbDkbm6MWp7MhmVzv4p@hub-cloud.browserstack.com/wd/hub",
+      :desired_capabilities => caps)
+end
+
+
 Before do |scenario|
   puts "TC Start time: #{Time.now.strftime('%m/%d/%Y %H:%M%p')}"
 
@@ -78,6 +99,7 @@ After do |scenario|
     sw = page.driver.browser
     encoded_img = sw.screenshot_as(:base64)
     embed("data:image/png;base64,#{encoded_img}",'image/png')
+    Dir::mkdir('output/screenshots') if not File.directory?('output')
     Dir::mkdir('output/screenshots') if not File.directory?('output/screenshots')
     screenshot = "output/screenshots/FAILED_#{@scenario_name.gsub(' ','_').gsub('|','_').gsub(/[^0-9A-Za-z_()]/, '')}_#{Time.new.strftime('%Y%m%d-%H%M%S')}.png"
     sw.save_screenshot(screenshot)

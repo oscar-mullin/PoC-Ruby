@@ -1,8 +1,10 @@
 default:
   EXEC_TYPE=local
-  BROWSER=CH
+  BROWSER=IE
+  TARGET=bstack
 parallel:
   EXEC_TYPE=remote
-  BROWSER=CH
+  BROWSER=IE
   HUB_URL=http://127.0.0.1:4444/wd/hub
   --format html --out output/Report_(<%= ENV['TEST_ENV_NUMBER'] %>).html
+  TARGET=bstack
