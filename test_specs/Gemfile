@@ -1,14 +1,14 @@
 # frozen_string_literal: true
 source 'https://rubygems.org'
 
-gem 'cucumber-2.4.0', '~>2.4.0'
-gem 'capybara-2.12.0', '~>2.12.0'
-gem 'rspec-3.5.0', '~>3.5.0'
-gem 'site_prism-2.9', '~>2.9'
-gem 'selenium-webdriver-3.0.5', '~>3.0.5'
-gem 'parallel_tests-2.13.0', '~>2.13.0'
-gem 'gmail-0.6.0'
-gem 'report_builder-0.1.2'
+gem 'cucumber', '~>2.4.0'
+gem 'capybara', '~>2.12.0'
+gem 'rspec', '~>3.5.0'
+gem 'site_prism', '~>2.9'
+gem 'selenium-webdriver', '~>3.0.5'
+gem 'parallel_tests', '~>2.13.0'
+gem 'gmail'
+gem 'report_builder'
 
 #Deleted gems
 

@@ -1,10 +1,18 @@
 default:
   EXEC_TYPE=local
-  BROWSER=IE
+  BROWSER=CH
   TARGET=bstack
+  CONFIG_NAME=Win10Edge14
+  BROWSERSTACK_SERVER=hub-cloud.browserstack.com
+  BROWSERSTACK_USERNAME=walterramirez2
+  BROWSERSTACK_ACCESS_KEY=2VPEZp2WfGDL4XCxbRhT
 parallel:
   EXEC_TYPE=remote
-  BROWSER=IE
+  BROWSER=CH
   HUB_URL=http://127.0.0.1:4444/wd/hub
   --format html --out output/Report_(<%= ENV['TEST_ENV_NUMBER'] %>).html
   TARGET=bstack
+  CONFIG_NAME=Win10Edge14
+  BROWSERSTACK_SERVER=hub-cloud.browserstack.com
+  BROWSERSTACK_USERNAME=walterramirez2
+  BROWSERSTACK_ACCESS_KEY=2VPEZp2WfGDL4XCxbRhT
