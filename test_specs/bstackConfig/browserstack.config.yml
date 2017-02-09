@@ -1,0 +1,10 @@
+server: "hub-cloud.browserstack.com"
+user: "walterramirez2"
+key: "2VPEZp2WfGDL4XCxbRhT"
+
+common_caps:
+  "browserstack.debug": true
+
+browser_caps:
+  -
+    "browser": "chrome"

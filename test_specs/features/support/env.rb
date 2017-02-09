@@ -5,6 +5,7 @@ require 'capybara/cucumber'
 require 'site_prism'
 require 'gmail'
 require 'report_builder'
+require 'yaml'
 
 $browser = ENV['BROWSER'] # IE, CH, FF
 
@@ -61,20 +62,44 @@ case ENV['TARGET']
   end
 
   when 'bstack' then
-    caps = Selenium::WebDriver::Remote::Capabilities.new
-    caps["browser"] = "#{ENV['BROWSER']}"
-    caps["browser_version"] = "7.0"
-    caps["os"] = "Windows"
-    caps["os_version"] = "XP"
-    caps["browserstack.debug"] = "true"
-    caps["name"] = "Spigit BS Tests"
+      # walterramirez2:2VPEZp2WfGDL4XCxbRhT
+      # alexandrchikanov1:DAbDkbm6MWp7MhmVzv4p
+    TASK_ID = 0 #(ENV['TASK_ID'] || 0).to_i
+    CONFIG_NAME = ENV['CONFIG_NAME'] || 'browserstack'
 
-    Capybara.default_driver = Selenium::WebDriver.for(:remote,
-      :url => "http://walterramirez2:2VPEZp2WfGDL4XCxbRhT@hub-cloud.browserstack.com/wd/hub",
-      # :url => "http://alexandrchikanov1:DAbDkbm6MWp7MhmVzv4p@hub-cloud.browserstack.com/wd/hub",
-      :desired_capabilities => caps)
+    CONFIG = YAML.load(File.read(File.join(File.dirname(__FILE__), "../../bstackConfig/#{CONFIG_NAME}.config.yml")))
+    CONFIG['user'] = ENV['BROWSERSTACK_USERNAME'] || CONFIG['user']
+    CONFIG['key'] = ENV['BROWSERSTACK_ACCESS_KEY'] || CONFIG['key']
+
+    Capybara.register_driver :browserstack do |app|
+      @caps = CONFIG['common_caps'].merge(CONFIG['browser_caps'][TASK_ID])
+
+      # Code to start browserstack local before start of test
+      if @caps['browserstack.local'] && @caps['browserstack.local'].to_s == 'true';
+        @bs_local = BrowserStack::Local.new
+        bs_local_args = {"key" => "#{CONFIG['key']}"}
+        @bs_local.start(bs_local_args)
+      end
+
+      Capybara::Selenium::Driver.new(app,
+                                     :browser => :remote,
+                                     :url => "http://#{CONFIG['user']}:#{CONFIG['key']}@#{ENV['BROWSERSTACK_SERVER']}/wd/hub",
+                                     :desired_capabilities => @caps
+      )
+    end
+
+    Capybara.default_driver = :browserstack
+    Capybara.run_server = false
 end
-
+#
+# # monkey patch to avoid reset sessions
+# class Capybara::Selenium::Driver < Capybara::Driver::Base
+#   def reset!
+#     if @browser
+#       @browser.navigate.to('about:blank')
+#     end
+#   end
+# end
 
 Before do |scenario|
   puts "TC Start time: #{Time.now.strftime('%m/%d/%Y %H:%M%p')}"
@@ -106,8 +131,9 @@ After do |scenario|
   end
 
   at_exit do
+    @bs_local.stop unless @bs_local.nil?
     options = {
-       json_path:    'output/',
+       json_path:    'output',
        report_path:  'output/MyTestResults',
        # report_path:  'output/MyTestResults_%DATE:~-4%-%DATE:~4,2%-%DATE:~7,2%',
        report_types: ['html'],
