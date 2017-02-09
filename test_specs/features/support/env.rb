@@ -5,7 +5,6 @@ require 'capybara/cucumber'
 require 'site_prism'
 require 'gmail'
 require 'report_builder'
-require 'yaml'
 
 $browser = ENV['BROWSER'] # IE, CH, FF
 
