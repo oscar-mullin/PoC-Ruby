@@ -29,9 +29,6 @@ Run below commands from a cmd console in order to complete the installation of a
         gem install selenium-webdriver -v 3.0.5
         gem install parallel_tests -v 2.13.0
         gem install gmail
-        gem install report_builder
-        gem install bundler
-        bundle install
 
 #### Java Development Kit
 1. Download Java SE Development Kit 8 from [orale.com](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) web page
@@ -60,9 +57,9 @@ In order to execute any command you should open a command console, navigate to *
 
 - Execute a feature on a **single thread**:
 
-        bundle exec cucumber features/[FeatureName].feature --format json --out output/[FeatureName][Browser][AppVersion]_%DATE:~-4%-%DATE:~4,2%-%DATE:~7,2%.json
+        cucumber features/[FeatureName].feature --format html --out output/[FeatureName][Browser][AppVersion]_%DATE:~-4%-%DATE:~4,2%-%DATE:~7,2%.html
         e.g.:
-        bundle exec cucumber features/LoginTest.feature --format json --out output/LoginTestCH392_%DATE:~-4%-%DATE:~4,2%-%DATE:~7,2%.json
+        cucumber features/LoginTest.feature --format html --out output/LoginTestCH392_%DATE:~-4%-%DATE:~4,2%-%DATE:~7,2%.html
 
 - Execute a feature on a **parallel thread**:
 

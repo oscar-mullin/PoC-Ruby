@@ -12,7 +12,7 @@ $browser = ENV['BROWSER'] # IE, CH, FF
 Dir::mkdir('output') if not File.directory?('output')
 Dir::mkdir('output/screenshots') if not File.directory?('output/screenshots')
 
-# TARGET = web, web_saucelabs, mobile, mobile_saucelabs
+# TARGET = web, bstack
 case ENV['TARGET']
   when 'web'
   case ENV['BROWSER']
@@ -62,44 +62,29 @@ case ENV['TARGET']
   end
 
   when 'bstack' then
-      # walterramirez2:2VPEZp2WfGDL4XCxbRhT
-      # alexandrchikanov1:DAbDkbm6MWp7MhmVzv4p
-    TASK_ID = 0 #(ENV['TASK_ID'] || 0).to_i
-    CONFIG_NAME = ENV['CONFIG_NAME'] || 'browserstack'
-
-    CONFIG = YAML.load(File.read(File.join(File.dirname(__FILE__), "../../bstackConfig/#{CONFIG_NAME}.config.yml")))
-    CONFIG['user'] = ENV['BROWSERSTACK_USERNAME'] || CONFIG['user']
-    CONFIG['key'] = ENV['BROWSERSTACK_ACCESS_KEY'] || CONFIG['key']
+    browser = ENV['BROWSER']
+    case browser
+      when 'CH' then browser = "Chrome"
+      when 'FF' then browser = "Firefox"
+      when 'ED' then browser = "Edge"
+    end
 
     Capybara.register_driver :browserstack do |app|
-      @caps = CONFIG['common_caps'].merge(CONFIG['browser_caps'][TASK_ID])
 
-      # Code to start browserstack local before start of test
-      if @caps['browserstack.local'] && @caps['browserstack.local'].to_s == 'true';
-        @bs_local = BrowserStack::Local.new
-        bs_local_args = {"key" => "#{CONFIG['key']}"}
-        @bs_local.start(bs_local_args)
-      end
-
-      Capybara::Selenium::Driver.new(app,
+    Capybara::Selenium::Driver.new(app,
                                      :browser => :remote,
-                                     :url => "http://#{CONFIG['user']}:#{CONFIG['key']}@#{ENV['BROWSERSTACK_SERVER']}/wd/hub",
-                                     :desired_capabilities => @caps
-      )
+                                     :url => "http://#{ENV['BROWSERSTACK_USERNAME']}:#{ENV['BROWSERSTACK_ACCESS_KEY']}@#{ENV['BROWSERSTACK_SERVER']}/wd/hub",
+                                     :desired_capabilities => {'browserstack.debug'=>true,
+                                                               'os'=>"#{ENV['OS']}",
+                                                               'os_version'=>"#{ENV['OS_VERSION']}",
+                                                               'browser'=>browser,
+                                                               'browser_version'=>"#{ENV['BROWSER_VERSION']}"}
+    )
     end
 
     Capybara.default_driver = :browserstack
     Capybara.run_server = false
 end
-#
-# # monkey patch to avoid reset sessions
-# class Capybara::Selenium::Driver < Capybara::Driver::Base
-#   def reset!
-#     if @browser
-#       @browser.navigate.to('about:blank')
-#     end
-#   end
-# end
 
 Before do |scenario|
   puts "TC Start time: #{Time.now.strftime('%m/%d/%Y %H:%M%p')}"
@@ -124,7 +109,7 @@ After do |scenario|
     sw = page.driver.browser
     encoded_img = sw.screenshot_as(:base64)
     embed("data:image/png;base64,#{encoded_img}",'image/png')
-    Dir::mkdir('output/screenshots') if not File.directory?('output')
+    Dir::mkdir('output') if not File.directory?('output')
     Dir::mkdir('output/screenshots') if not File.directory?('output/screenshots')
     screenshot = "output/screenshots/FAILED_#{@scenario_name.gsub(' ','_').gsub('|','_').gsub(/[^0-9A-Za-z_()]/, '')}_#{Time.new.strftime('%Y%m%d-%H%M%S')}.png"
     sw.save_screenshot(screenshot)
@@ -135,7 +120,6 @@ After do |scenario|
     options = {
        json_path:    'output',
        report_path:  'output/MyTestResults',
-       # report_path:  'output/MyTestResults_%DATE:~-4%-%DATE:~4,2%-%DATE:~7,2%',
        report_types: ['html'],
        report_tabs:  ['overview', 'features', 'scenarios', 'errors'],
        report_title: 'My Test Results',
