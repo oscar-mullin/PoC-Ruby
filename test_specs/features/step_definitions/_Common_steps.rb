@@ -41,3 +41,15 @@ Then(/^I verify that "([^"]*)" message (is|is not) displayed in "([^"]*)" page$/
       fail(ArgumentError.new("'#{page}' page is not listed."))
   end
 end
+
+When(/^I click on "([^"]*)" main menu tab$/) do |tab|
+  pending
+end
+
+And(/^I click on "([^"]*)" option in the "([^"]*)" section of "([^"]*)" page$/) do |option, section, page|
+  pending
+end
+
+And(/^I click on the "([^"]*)" (link|tab) on "([^"]*)" page$/) do |link, object, page|
+  pending
+end
