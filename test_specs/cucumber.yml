@@ -1,8 +1,8 @@
 default:
   EXEC_TYPE=local
   BROWSER=CH
-  TARGET=bstack
   --format json --out output/Report.json
+  TARGET=local_web
 
   BROWSERSTACK_SERVER=hub-cloud.browserstack.com
   BROWSERSTACK_USERNAME=walterramirez2
@@ -16,7 +16,7 @@ parallel:
   BROWSER=CH
   HUB_URL=http://127.0.0.1:4444/wd/hub
   --format json --out output/Report_(<%= ENV['TEST_ENV_NUMBER'] %>).json
-  TARGET=web
+  TARGET=local_web
 
   BROWSERSTACK_SERVER=hub-cloud.browserstack.com
   BROWSERSTACK_USERNAME=walterramirez2

@@ -11,9 +11,9 @@ $browser = ENV['BROWSER'] # IE, CH, FF
 Dir::mkdir('output') if not File.directory?('output')
 Dir::mkdir('output/screenshots') if not File.directory?('output/screenshots')
 
-# TARGET = web, bstack
+# TARGET = local_web, bstack_web
 case ENV['TARGET']
-  when 'web'
+  when 'local_web'
   case ENV['BROWSER']
     when 'CH' then
       Capybara.register_driver :chrome do |app|
@@ -60,7 +60,7 @@ case ENV['TARGET']
       Capybara.javascript_driver = :selenium
   end
 
-  when 'bstack' then
+  when 'bstack_web' then
     browser = ENV['BROWSER']
     case browser
       when 'CH' then browser = "Chrome"
@@ -115,13 +115,12 @@ After do |scenario|
   end
 
   at_exit do
-    @bs_local.stop unless @bs_local.nil?
     options = {
        json_path:    'output',
-       report_path:  'output/MyTestResults',
+       report_path:  'output/TestResults',
        report_types: ['html'],
        report_tabs:  ['overview', 'features', 'scenarios', 'errors'],
-       report_title: 'My Test Results',
+       report_title: 'Test Results',
        compress_images: false,
        additional_info: {'browser' => 'Chrome', 'environment' => '2 features at once'}
      }
