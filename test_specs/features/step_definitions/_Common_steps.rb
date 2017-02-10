@@ -43,13 +43,13 @@ Then(/^I verify that "([^"]*)" message (is|is not) displayed in "([^"]*)" page$/
 end
 
 When(/^I click on "([^"]*)" main menu tab$/) do |tab|
-  pending
+  # TODO - 2/10/2017 - WR - Complete this step on *Create test steps ENG-10487* task
 end
 
 And(/^I click on "([^"]*)" option in the "([^"]*)" section of "([^"]*)" page$/) do |option, section, page|
-  pending
+  # TODO - 2/10/2017 - WR - Complete this step on *Create test steps ENG-10487* task
 end
 
 And(/^I click on the "([^"]*)" (link|tab) on "([^"]*)" page$/) do |link, object, page|
-  pending
+  # TODO - 2/10/2017 - WR - Complete this step on *Create test steps ENG-10487* task
 end
