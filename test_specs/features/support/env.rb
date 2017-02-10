@@ -4,7 +4,6 @@ require 'capybara'
 require 'capybara/cucumber'
 require 'site_prism'
 require 'gmail'
-require 'report_builder'
 
 $browser = ENV['BROWSER'] # IE, CH, FF
 
@@ -114,17 +113,18 @@ After do |scenario|
     sw.save_screenshot(screenshot)
   end
 
-  at_exit do
-    options = {
-       json_path:    'output',
-       report_path:  'output/TestResults',
-       report_types: ['html'],
-       report_tabs:  ['overview', 'features', 'scenarios', 'errors'],
-       report_title: 'Test Results',
-       compress_images: false,
-       additional_info: {'browser' => 'Chrome', 'environment' => '2 features at once'}
-     }
-
-    ReportBuilder.build_report options
-  end
+  # NOTE: Removed since a report shouldn't be generated after each process ends, the report should only be generated once the last process has ended
+  # at_exit do
+  #   options = {
+  #      json_path:    'output',
+  #      report_path:  'output/TestResults',
+  #      report_types: ['html'],
+  #      report_tabs:  ['overview', 'features', 'scenarios', 'errors'],
+  #      report_title: 'Test Results',
+  #      compress_images: false,
+  #      additional_info: {'browser' => 'Chrome', 'environment' => '2 features at once'}
+  #    }
+  #
+  #   ReportBuilder.build_report options
+  # end
 end
