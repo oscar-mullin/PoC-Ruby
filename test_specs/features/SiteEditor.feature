@@ -1,4 +1,4 @@
-Feature: Login
+Feature: Site Editor
 
   @Test
   Scenario Outline: ENG-10487 - Verify that some widgets are no longer listed in the "Select Widget" dropdown on the Site Editor page
