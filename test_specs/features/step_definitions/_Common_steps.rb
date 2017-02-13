@@ -46,10 +46,6 @@ When(/^I click on "([^"]*)" main menu tab$/) do |tab|
   # TODO - 2/10/2017 - WR - Complete this step on *Create test steps ENG-10487* task
 end
 
-And(/^I click on "([^"]*)" option in the "([^"]*)" section of "([^"]*)" page$/) do |option, section, page|
-  # TODO - 2/10/2017 - WR - Complete this step on *Create test steps ENG-10487* task
-end
-
-And(/^I click on the "([^"]*)" (link|tab) on "([^"]*)" page$/) do |link, object, page|
+And(/^I click on "([^"]*)" option(| in the * section)$/) do |option, _|
   # TODO - 2/10/2017 - WR - Complete this step on *Create test steps ENG-10487* task
 end
