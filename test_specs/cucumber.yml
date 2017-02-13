@@ -1,8 +1,26 @@
 default:
   EXEC_TYPE=local
   BROWSER=CH
+  --format json --out output/Report.json
+  TARGET=local_web
+
+  BROWSERSTACK_SERVER=hub-cloud.browserstack.com
+  BROWSERSTACK_USERNAME=walterramirez2
+  BROWSERSTACK_ACCESS_KEY=2VPEZp2WfGDL4XCxbRhT
+  OS=Windows
+  OS_VERSION=8.1
+  BROWSER_VERSION=
+
 parallel:
   EXEC_TYPE=remote
   BROWSER=CH
   HUB_URL=http://127.0.0.1:4444/wd/hub
-  --format html --out output/Report_(<%= ENV['TEST_ENV_NUMBER'] %>).html
+  --format json --out output/Report_(<%= ENV['TEST_ENV_NUMBER'] %>).json
+  TARGET=local_web
+
+  BROWSERSTACK_SERVER=hub-cloud.browserstack.com
+  BROWSERSTACK_USERNAME=walterramirez2
+  BROWSERSTACK_ACCESS_KEY=2VPEZp2WfGDL4XCxbRhT
+  OS=Windows
+  OS_VERSION=8.1
+  BROWSER_VERSION=

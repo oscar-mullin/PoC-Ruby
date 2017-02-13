@@ -41,3 +41,23 @@ Then(/^I verify that "([^"]*)" message (is|is not) displayed in "([^"]*)" page$/
       fail(ArgumentError.new("'#{page}' page is not listed."))
   end
 end
+
+And(/^I click on 'Administration' main menu tab$/) do
+  #TODO
+end
+
+When(/^I click on 'View Ideas' main menu tab$/) do
+  #TODO
+end
+
+And(/^I click on the "([^"]*)" idea on 'View Ideas' page$/) do |idea|
+  #TODO
+end
+
+When(/^I click on 'Home' main menu tab$/) do
+  #TODO
+end
+
+When(/^I click on 'Post Idea' main menu tab$/) do
+  #TODO
+end
