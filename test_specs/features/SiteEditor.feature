@@ -4,10 +4,10 @@ Feature: Site Editor
   Scenario Outline: ENG-10487 - Verify that some widgets are no longer listed in the 'Select Widget' dropdown on the Site Editor page
     Given I login to "<site>" community with "<user>" user
     When I click on "Administration" main menu tab
-    And I click on "Site Editor" option in the "Display" section
-    And I click on the "Home" link on "Site Editor" page ------
-    And I select "Content" tab on "Home" page ------
-    And I expand "Select Widget" dropdown ------
+    And I click on "Site Editor" option
+    And I click on the "Home" link
+    And I select "Content" tab
+    And I expand the first "Select Widget" dropdown
     Then I verify that 'approval_task' widget is not displayed
     And I verify that 'blog_tags' widget is not displayed
     And I verify that 'bookmarked_ideas_widget' widget is not displayed
