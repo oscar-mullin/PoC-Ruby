@@ -54,11 +54,7 @@ And(/^I click on the "([^"]*)" idea on 'View Ideas' page$/) do |idea|
   #TODO
 end
 
-When(/^I click on "([^"]*)" main menu tab$/) do |tab|
-  # TODO - 2/10/2017 - WR - Complete this step on *Create test steps ENG-10487* task
-end
-
-And(/^I click on "([^"]*)" option$/) do |option|
+And(/^I click on 'Site Editor' option on 'Administration' page$/) do |option|
   # TODO - 2/10/2017 - WR - Complete this step on *Create test steps ENG-10487* task
 end
 
