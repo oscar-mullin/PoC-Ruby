@@ -20,21 +20,15 @@ Proof of concept for the **Spigit INC.** Web Automation Framework using Selenium
             ruby dk.rb install
 
 #### Required Gems
-Run below commands from a cmd console in order to complete the installation of all necessary gems:
+In order to install all necessary gems for this project, you should install bundle and install all files form Gemfile, follow below steps to complete this process:
 
-        gem install cucumber -v 2.4.0
-        gem install capybara -v 2.12.0
-        gem install rspec -v 3.5.0
-        gem install site_prism -v 2.9
-        gem install selenium-webdriver -v 3.0.5
-        gem install parallel_tests -v 2.13.0
-        gem install gmail
-        gem install report_builder
+ - Install Bundle, open a command console and navigate to **test_specs** folder and execute below commands
+ 
         gem install bundler
         bundle install
 
 #### Java Development Kit
-1. Download Java SE Development Kit 8 from [orale.com](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) web page
+1. Download Java SE Development Kit 8 from [oracle.com](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) web page
 2. Run the downloaded installer (e.g., "jdk-8u{xx}-windows-x64.exe"), which installs both the JDK and JRE. By default, the JDK will be installed in directory "C:\Program Files\Java\jdk1.8.0_xx", where xx denotes the upgrade number; and JRE in "C:\Program Files\Java\jre1.8.0_xx".
 3. Accept the defaults and follow the screen instructions to install JDK and JRE.
 4. Include **"<JAVA_HOME>\bin"** bin directory to the Environment Variables, where **<JAVA_HOME>** denotes the JDK installed directory
@@ -86,7 +80,11 @@ Further, If you want to use a different Machine to the **hub**, you should repla
 
 ## Reporting
 
-After to execute any feature test, you can find an execution report on *test_specs/output/TestResults.html*, this report should be automatically generated  with all the information about the last execution. 
+In order to generate the reports you should open a command console, navigate to **test_specs** folder and execute below command:
+
+        ruby -r "./features/support/lib/HTMLReportGenerator.rb" -e "HTMLReportGenerator.generateReport"
+                
+If everything is fine, you should find the report on *test_specs/output/Test Results.html*
 
 ## Contributing
 
