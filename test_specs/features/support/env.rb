@@ -92,6 +92,7 @@ Before do |scenario|
   @communityUtil = CommunityUtil.new
   @driverManager = DriverManager.new('','',0)
   @siteutil = SiteUtil.new
+  @utils = Utils.new
   #endregion
 end
 

@@ -4,6 +4,7 @@ class HomePage < SitePrism::Page
   element :administration_link, :xpath, ""
   element :view_ideas_link, :xpath, ""
   element :post_idea_link, :xpath, ""
+  element :navigation_bar_container, :xpath, '.navHolder.enhanced'
 
   def clickHomeLink
     home_link.click
@@ -23,6 +24,13 @@ class HomePage < SitePrism::Page
   def clickPostIdeaLink
     post_idea_link.click
     return PostIdeaPage.new('','',0)
+  end
+
+  ##
+  # @param [String] property   Css property
+  #
+  def getNavigationBarContainerStyle(property)
+    return navigation_bar_container.native.style(property).to_s
   end
 
 end

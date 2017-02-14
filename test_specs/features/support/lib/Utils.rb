@@ -27,4 +27,17 @@ class Utils
       return false
     end
   end
+
+  ##
+  # @param [Integer] r
+  # @param [Integer] g
+  # @param [Integer] b
+  #
+  def getHexColorCode(r, g, b)
+    hex_r = r.to_s(16).rjust(2, '0').upcase
+    hex_g = g.to_s(16).rjust(2, '0').upcase
+    hex_b = b.to_s(16).rjust(2, '0').upcase
+    return hex_r + hex_g + hex_b
+  end
+
 end
