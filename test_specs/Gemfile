@@ -8,6 +8,7 @@ gem 'site_prism', '~>2.9'
 gem 'selenium-webdriver', '~>3.0.5'
 gem 'parallel_tests', '~>2.13.0'
 gem 'gmail'
+gem 'report_builder', '~>0.1.2'
 
 #Deleted gems
 

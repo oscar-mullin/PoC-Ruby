@@ -20,18 +20,15 @@ Proof of concept for the **Spigit INC.** Web Automation Framework using Selenium
             ruby dk.rb install
 
 #### Required Gems
-Run below commands from a cmd console in order to complete the installation of all necessary gems:
+In order to install all necessary gems for this project, you should install bundle and install all files form Gemfile, follow below steps to complete this process:
 
-        gem install cucumber -v 2.4.0
-        gem install capybara -v 2.12.0
-        gem install rspec -v 3.5.0
-        gem install site_prism -v 2.9
-        gem install selenium-webdriver -v 3.0.5
-        gem install parallel_tests -v 2.13.0
-        gem install gmail
+ - Install Bundle, open a command console and navigate to **test_specs** folder and execute below commands
+ 
+        gem install bundler
+        bundle install
 
 #### Java Development Kit
-1. Download Java SE Development Kit 8 from [orale.com](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) web page
+1. Download Java SE Development Kit 8 from [oracle.com](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) web page
 2. Run the downloaded installer (e.g., "jdk-8u{xx}-windows-x64.exe"), which installs both the JDK and JRE. By default, the JDK will be installed in directory "C:\Program Files\Java\jdk1.8.0_xx", where xx denotes the upgrade number; and JRE in "C:\Program Files\Java\jre1.8.0_xx".
 3. Accept the defaults and follow the screen instructions to install JDK and JRE.
 4. Include **"<JAVA_HOME>\bin"** bin directory to the Environment Variables, where **<JAVA_HOME>** denotes the JDK installed directory
@@ -57,9 +54,9 @@ In order to execute any command you should open a command console, navigate to *
 
 - Execute a feature on a **single thread**:
 
-        cucumber features/[FeatureName].feature --format html --out output/[FeatureName][Browser][AppVersion]_%DATE:~-4%-%DATE:~4,2%-%DATE:~7,2%.html
+        bundle exec cucumber features/[FeatureName].feature
         e.g.:
-        cucumber features/LoginTest.feature --format html --out output/LoginTestCH392_%DATE:~-4%-%DATE:~4,2%-%DATE:~7,2%.html
+        bundle exec cucumber features/LoginTest.feature
 
 - Execute a feature on a **parallel thread**:
 
@@ -81,6 +78,14 @@ In order to execute any command you should open a command console, navigate to *
 
 Further, If you want to use a different Machine to the **hub**, you should replace the current Ip Address on `test_specs\cucumber.yml` file under **Remote > HUB_URL** section, with the correct **hub** ip address.
 
+## Reporting
+
+In order to generate the reports you should open a command console, navigate to **test_specs** folder and execute below command:
+
+        ruby -r "./features/support/lib/HTMLReportGenerator.rb" -e "HTMLReportGenerator.generateReport"
+                
+If everything is fine, you should find the report on *test_specs/output/Test Results.html*
+
 ## Contributing
 
  1. Create your branch:
@@ -94,7 +99,10 @@ Further, If you want to use a different Machine to the **hub**, you should repla
  `git push origin my-branch`
  4. Submit a *pull request* to `development` branch 
 
+See more on: *Documents/SpigitAuto Git.jpg*
+
 ## changelog
 
 - 01/31/2017 - Walter Ramirez - First Version
 - 02/01/2017 - Walter Ramirez - Included Java and Browser Drivers
+- 02/09/2017 - Walter Ramirez - Included information about Reporting prerequisites

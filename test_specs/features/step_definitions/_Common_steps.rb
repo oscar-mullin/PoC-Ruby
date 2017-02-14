@@ -41,3 +41,31 @@ Then(/^I verify that "([^"]*)" message (is|is not) displayed in "([^"]*)" page$/
       fail(ArgumentError.new("'#{page}' page is not listed."))
   end
 end
+
+And(/^I click on 'Administration' main menu tab$/) do
+  @administrationpage = @homepage.clickAdministrationLink
+end
+
+When(/^I click on 'View Ideas' main menu tab$/) do
+  @viewideaspage = @homepage.clickViewIdeasLink
+end
+
+And(/^I click on the "([^"]*)" idea on 'View Ideas' page$/) do |idea|
+  @ideaDetailsPage = @viewideaspage.clickIdeaTitleLink(idea)
+end
+
+And(/^I click on 'Site Editor' option on 'Administration' page$/) do |option|
+  # TODO - 2/10/2017 - WR - Complete this step on *Create test steps ENG-10487* task
+end
+
+And(/^I click on the "([^"]*)" (link|tab) on "([^"]*)" page$/) do |link, object, page|
+  # TODO - 2/10/2017 - WR - Complete this step on *Create test steps ENG-10487* task
+end
+
+When(/^I click on 'Home' main menu tab$/) do
+  @homepage = @homepage.clickHomeLink
+end
+
+When(/^I click on 'Post Idea' main menu tab$/) do
+  @postideapage = @homepage.clickPostIdeaLink
+end
