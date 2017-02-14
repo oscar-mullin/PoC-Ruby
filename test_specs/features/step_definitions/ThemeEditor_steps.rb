@@ -42,8 +42,16 @@ When(/^I fill the "Hex Color\#" field with a "(.*)" color code$/) do |new_color|
   pending
 end
 
-Then(/^I verify that "([^"]*)" Hex color can be entered on the field$/) do |new_color|
-  # TODO - 2/13/2017 - WR - Complete this step on *Create test steps ENG-11828* task
+And(/^I verify that Link color preview is updated with "([^"]*)" code$/) do |new_color|
+  # TODO
+end
+
+When(/^I click on 'Challenges' main menu tab$/) do
+  # TODO
+end
+
+Then(/^I verify that challenge title link color is "([^"]*)" color when hovering a challenge's title$/) do |new_color|
+  # TODO
 end
 
 When(/^I click on 'Theme Editor' option on 'Administration' page$/) do
