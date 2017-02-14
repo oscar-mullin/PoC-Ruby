@@ -43,15 +43,15 @@ Then(/^I verify that "([^"]*)" message (is|is not) displayed in "([^"]*)" page$/
 end
 
 And(/^I click on 'Administration' main menu tab$/) do
-  #TODO
+  @administrationpage = @homepage.clickAdministrationLink
 end
 
 When(/^I click on 'View Ideas' main menu tab$/) do
-  #TODO
+  @viewideaspage = @homepage.clickViewIdeasLink
 end
 
 And(/^I click on the "([^"]*)" idea on 'View Ideas' page$/) do |idea|
-  #TODO
+  @ideaDetailsPage = @viewideaspage.clickIdeaTitleLink(idea)
 end
 
 And(/^I click on 'Site Editor' option on 'Administration' page$/) do |option|
@@ -63,9 +63,9 @@ And(/^I click on the "([^"]*)" (link|tab) on "([^"]*)" page$/) do |link, object,
 end
 
 When(/^I click on 'Home' main menu tab$/) do
-  #TODO
+  @homepage = @homepage.clickHomeLink
 end
 
 When(/^I click on 'Post Idea' main menu tab$/) do
-  #TODO
+  @postideapage = @homepage.clickPostIdeaLink
 end
