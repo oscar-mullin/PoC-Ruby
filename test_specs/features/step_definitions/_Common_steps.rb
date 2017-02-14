@@ -54,6 +54,14 @@ And(/^I click on the "([^"]*)" idea on 'View Ideas' page$/) do |idea|
   #TODO
 end
 
+And(/^I click on 'Site Editor' option on 'Administration' page$/) do |option|
+  # TODO - 2/10/2017 - WR - Complete this step on *Create test steps ENG-10487* task
+end
+
+And(/^I click on the "([^"]*)" (link|tab) on "([^"]*)" page$/) do |link, object, page|
+  # TODO - 2/10/2017 - WR - Complete this step on *Create test steps ENG-10487* task
+end
+
 When(/^I click on 'Home' main menu tab$/) do
   #TODO
 end
