@@ -1,3 +1,7 @@
+
+And(/^I expand "([^"]*)" dropdown of "([^"]*)" column on Site Editor page$/) do |dropdown, column|
+  #TODO
+end
 When(/^I click on 'Theme Editor' option on 'Administration' page$/) do
   #TODO
 end

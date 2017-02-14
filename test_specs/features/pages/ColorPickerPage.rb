@@ -1,6 +1,7 @@
 class ColorPickerPage < SitePrism::Page
 
   element :hex_color_field, :xpath, ""
+  element :color_picker_container, '.colorpicker'
 
   def getHexColorFieldValue
     hex_color_field.value

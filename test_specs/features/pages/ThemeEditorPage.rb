@@ -99,4 +99,8 @@ class ThemeEditorPage < SitePrism::Page
     attach_file('logo', path)
   end
 
+  def saveButtonEnabled?
+    return !save_button.disabled?
+  end
+
 end
