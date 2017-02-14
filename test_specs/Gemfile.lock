@@ -87,7 +87,7 @@ DEPENDENCIES
   cucumber (~> 2.4.0)
   gmail
   parallel_tests (~> 2.13.0)
-  report_builder
+  report_builder (~> 0.1.2)
   rspec (~> 3.5.0)
   selenium-webdriver (~> 3.0.5)
   site_prism (~> 2.9)
