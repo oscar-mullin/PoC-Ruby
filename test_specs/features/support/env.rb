@@ -113,6 +113,7 @@ After do |scenario|
     sw.save_screenshot(screenshot)
   end
 
+  page.driver.quit
   # NOTE: Removed since a report shouldn't be generated after each process ends, the report should only be generated once the last process has ended
   # at_exit do
   #   options = {
