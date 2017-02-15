@@ -88,17 +88,28 @@ And(/^I verify "([^"]*)" popup message is displayed on 'Theme Editor' page$/) do
 end
 
 Then(/^I verify the idea's rating has "([^"]*)" color$/) do |color|
-  #TODO
+  #TODO: New Idea Deatails page is not ready yet
 end
 
 Then(/^I verify the navigation bar has "([^"]*)" color$/) do |color|
-  #TODO
+  bg_color = @homepage.getNavigationBarContainerStyle('background-color')
+  r_value = bg_color[/rgba\((\d+), \d+, \d+, \d+\)/,1].to_i
+  g_value = bg_color[/rgba\(\d+, (\d+), \d+, \d+\)/,1].to_i
+  b_value = bg_color[/rgba\(\d+, \d+, (\d+), \d+\)/,1].to_i
+  hex_color = @utils.getHexColorCode(r_value, g_value, b_value)
+  expect(hex_color).to_eq(color)
 end
 
 And(/^I verify the 'Ideas' tab has "([^"]*)" color$/) do |color|
-  #TODO
+  #TODO: New Home page is not ready yet
 end
 
 Then(/^I verify 'Publish' button has "([^"]*)" color$/) do |color|
-  #TODO
+  style = @postideapage.getPublishButtonAttribute('style')
+  bg_color = style[/background-color: (.*)\; color/,a]
+  r_value = bg_color[/rgb\((\d+), \d+, \d+, \d+\)/,1].to_i
+  g_value = bg_color[/rgb\(\d+, (\d+), \d+, \d+\)/,1].to_i
+  b_value = bg_color[/rgb\(\d+, \d+, (\d+), \d+\)/,1].to_i
+  hex_color = @utils.getHexColorCode(r_value, g_value, b_value)
+  expect(hex_color).to_eq(color)
 end

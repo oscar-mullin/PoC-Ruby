@@ -115,4 +115,4 @@ Feature: Theme Editor
   @non-challenge
   Examples:
     | site                                      | user      | hex_code  | idea_title                    |
-    | Non-Challenge community - Admin Settings  | autobot5  | 32c700    | Community Idea AS-011 Votes 1 |
+    | Non-Challenge community - Admin Settings  | autobot5  | 32C700    | Community Idea AS-011 Votes 1 |
