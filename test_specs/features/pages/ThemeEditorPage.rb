@@ -1,6 +1,6 @@
 class ThemeEditorPage < SitePrism::Page
 
-  element :brand_color_button, :xpath, ""
+  element :brand_color_button, '.color-picker.color-brand.brand-bg'
   element :brand_color_preview, :xpath, ""
   element :button_text_color_button, :xpath, ""
   element :button_text_color_preview, :xpath, ""
@@ -9,7 +9,7 @@ class ThemeEditorPage < SitePrism::Page
   element :navbar_text_color_button, :xpath, ""
   element :navbar_text_color_preview, :xpath, ""
 
-  element :save_button, :xpath, ""
+  element :save_button, '.submit-container>button.btn-primary'
   element :save_and_apply_button, :xpath, ""
   element :confirm_continue_link, :xpath, ""
   element :confirm_cancel_link, :xpath, ""
@@ -17,7 +17,7 @@ class ThemeEditorPage < SitePrism::Page
 
   def clickBrandColorButton
     brand_color_button.click
-    return ColorPickerPage.new('','',0)
+    return ColorPickerPage.new('css','.colorpicker',0)
   end
 
   ##
@@ -30,7 +30,7 @@ class ThemeEditorPage < SitePrism::Page
 
   def clickButtonTextColorButton
     button_text_color_button.click
-    return ColorPickerPage.new('','',0)
+    return ColorPickerPage.new('css','.colorpicker',0)
   end
 
   ##
@@ -43,7 +43,7 @@ class ThemeEditorPage < SitePrism::Page
 
   def clickLinkColorButton
     link_color_button.click
-    return ColorPickerPage.new('','',0)
+    return ColorPickerPage.new('css','.colorpicker',0)
   end
 
   ##
@@ -56,7 +56,7 @@ class ThemeEditorPage < SitePrism::Page
 
   def clickNavbarTextColorButton
     navbar_text_color_button.click
-    return ColorPickerPage.new('','',0)
+    return ColorPickerPage.new('css','.colorpicker',0)
   end
 
   ##
