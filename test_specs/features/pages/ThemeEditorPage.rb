@@ -13,7 +13,7 @@ class ThemeEditorPage < SitePrism::Page
   element :save_and_apply_button, :xpath, ""
   element :confirm_continue_link, :xpath, ""
   element :confirm_cancel_link, :xpath, ""
-  element :message_container, :xpath, ""
+  element :message_container, '.popup-notice'
 
   def clickBrandColorButton
     brand_color_button.click
