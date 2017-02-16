@@ -4,7 +4,7 @@ class HomePage < SitePrism::Page
   element :administration_link, :xpath, ".//a[@href='/Page/Administration']"
   element :view_ideas_link, :xpath, ".//a[@href='/Page/ViewIdeas']"
   element :post_idea_link, :xpath, ".//a[@href='/Page/PostIdea']"
-  element :navigation_bar_container, :xpath, '.navHolder.enhanced'
+  element :navigation_bar_container, '.navHolder.enhanced'
 
   def clickHomeLink
     home_link.click
@@ -34,5 +34,16 @@ class HomePage < SitePrism::Page
   #
   def getNavigationBarContainerStyle(property)
     return navigation_bar_container.native.style(property).to_s
+  end
+
+  ##
+  # @param [String] property   Css property
+  #
+  def getNavigationBarLinkStyle(property)
+    return navigation_bar_container.find('li>a', :match => :first).native.style(property).to_s
+  end
+
+  def hoverViewIdeasLink
+    view_ideas_link.hover
   end
 end

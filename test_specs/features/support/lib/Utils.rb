@@ -40,4 +40,17 @@ class Utils
     return hex_r + hex_g + hex_b
   end
 
+  ##
+  # @param [String] selector  Element selector
+  # @param [String] property  Style property
+  #
+  def getElementStyleProperty(selector, property)
+    script =  <<-JS
+                var element = document.querySelector('#{selector}');
+                var property_value = window.getComputedStyle(element, null).getPropertyValue('#{property}');
+                return property_value;
+              JS
+    return Capybara.current_session.execute_script(script)
+  end
+
 end

@@ -14,8 +14,8 @@ And(/^I verify that the Navigation bar is centered aligned$/) do
   # TODO - 2/13/2017 - WR - Complete this step on *Create test steps ENG-11827* task
 end
 
-When(/^I click on Navigation Bar Text Color (circle|arrow)$/) do |nav_bar_color|
-  # TODO - 2/13/2017 - WR - Complete this step on *Create test steps ENG-11828* task
+When(/^I click on the Navigation Bar 'Text Color' circle$/) do
+  @colorPickerPage = @themeditorpage.clickNavbarTextColorButton
 end
 
 When(/^I select (.*) color from the Color Wheel$/) do |new_color|
@@ -30,12 +30,13 @@ And(/^I verify that the Preview Navigation bar Text Color (is|is not) updated ac
   # TODO - 2/13/2017 - WR - Complete this step on *Create test steps ENG-11828* task
 end
 
-When(/^I hover over the Navigation Bar$/) do
-  # TODO - 2/13/2017 - WR - Complete this step on *Create test steps ENG-11828* task
+When(/^I hover over the 'View Ideas' main menu tab$/) do
+  @homepage.hoverViewIdeasLink
 end
 
-Then(/^I verify that the Navigation Bar color is displayed 10% darker than the selected Brand (.*) Color$/) do |new_color|
-  # TODO - 2/13/2017 - WR - Complete this step on *Create test steps ENG-11828* task
+Then(/^I verify that the Navigation Bar color is displayed 10% darker than the selected Brand (.*) Color$/) do |_|
+  brightness_value = @utils.getElementStyleProperty('.navHolder a:hover','filter')[/brightness\((.*)\)/,1]
+  # TODO
 end
 
 When(/^I fill the "Hex Color\#" field with a "(.*)" color code$/) do |new_color|
@@ -60,7 +61,7 @@ end
 
 Then(/^I verify the 'Save' button is (enabled|disabled) on 'Theme Editor' page$/) do |enabled|
   is_enabled = enabled == 'enabled'
-  expect(@themeeditorpage.saveButtonEnabled?).to_eq(is_enabled)
+  expect(@themeeditorpage.saveButtonEnabled?).to eq(is_enabled)
 end
 
 When(/^I click on the 'Brand Color' circle$/) do
@@ -68,7 +69,7 @@ When(/^I click on the 'Brand Color' circle$/) do
 end
 
 Then(/^I verify the color picker is displayed$/) do
-  expect(@colorPickerPage.has_color_picker_container?).to_eq (true)
+  expect(@colorPickerPage.has_color_picker_container?).to eq(true)
 end
 
 When(/^I fill in the Hex color field with "([^"]*)" code$/) do |code|
@@ -76,7 +77,7 @@ When(/^I fill in the Hex color field with "([^"]*)" code$/) do |code|
 end
 
 Then(/^I verify Hex color field value is "([^"]*)"$/) do |code|
-  expect(@colorPickerPage.getHexColorFieldValue).to_eq(code)
+  expect(@colorPickerPage.getHexColorFieldValue).to eq(code)
 end
 
 When(/^I click on the 'Save' button on 'Theme Editor' page$/) do
@@ -84,7 +85,7 @@ When(/^I click on the 'Save' button on 'Theme Editor' page$/) do
 end
 
 And(/^I verify "([^"]*)" popup message is displayed on 'Theme Editor' page$/) do |message|
-  expect(@themeeditorpage.verifyMessage(message)).to_eq(true)
+  expect(@themeeditorpage.verifyMessage(message)).to eq(true)
 end
 
 Then(/^I verify the idea's rating has "([^"]*)" color$/) do |color|
@@ -97,7 +98,7 @@ Then(/^I verify the navigation bar has "([^"]*)" color$/) do |color|
   g_value = bg_color[/rgba\(\d+, (\d+), \d+, \d+\)/,1].to_i
   b_value = bg_color[/rgba\(\d+, \d+, (\d+), \d+\)/,1].to_i
   hex_color = @utils.getHexColorCode(r_value, g_value, b_value)
-  expect(hex_color).to_eq(color)
+  expect(hex_color).to eq(color)
 end
 
 And(/^I verify the 'Ideas' tab has "([^"]*)" color$/) do |color|
@@ -111,5 +112,14 @@ Then(/^I verify 'Publish' button has "([^"]*)" color$/) do |color|
   g_value = bg_color[/rgb\(\d+, (\d+), \d+, \d+\)/,1].to_i
   b_value = bg_color[/rgb\(\d+, \d+, (\d+), \d+\)/,1].to_i
   hex_color = @utils.getHexColorCode(r_value, g_value, b_value)
-  expect(hex_color).to_eq(color)
+  expect(hex_color).to eq(color)
+end
+
+And(/^I verify the navigation bar text has "([^"]*)" color$/) do |color|
+  bg_color = @homepage.getNavigationBarLinkStyle('color')
+  r_value = bg_color[/rgba\((\d+), \d+, \d+, \d+\)/,1].to_i
+  g_value = bg_color[/rgba\(\d+, (\d+), \d+, \d+\)/,1].to_i
+  b_value = bg_color[/rgba\(\d+, \d+, (\d+), \d+\)/,1].to_i
+  hex_color = @utils.getHexColorCode(r_value, g_value, b_value)
+  expect(hex_color).to eq(color)
 end
