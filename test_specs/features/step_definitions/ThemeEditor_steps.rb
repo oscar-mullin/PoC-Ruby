@@ -132,17 +132,6 @@ And(/^I verify the navigation bar text has "([^"]*)" color$/) do |color|
   expect(hex_color).to eq(color)
 end
 
-  # TODO: Update once the new Post Ideas page is ready
-
-  # style = @postideapage.getPublishButtonAttribute('style')
-  # bg_color = style[/background-color: (.*)\; color/,a]
-  # r_value = bg_color[/rgb\((\d+), \d+, \d+, \d+\)/,1].to_i
-  # g_value = bg_color[/rgb\(\d+, (\d+), \d+, \d+\)/,1].to_i
-  # b_value = bg_color[/rgb\(\d+, \d+, (\d+), \d+\)/,1].to_i
-  # hex_color = @utils.getHexColorCode(r_value, g_value, b_value)
-  # expect(hex_color).to eq(color)
-end
-
 And(/^I click on 'Ok' button in color picker$/) do
   @colorPickerPage.clickOKLink
 end
