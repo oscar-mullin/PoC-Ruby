@@ -89,4 +89,31 @@ Feature: Theme Editor
   @non-challenge
   Examples:
     | site                                      | user      | hex_code  | idea_title                    |
-    | Non-Challenge community - Admin Settings  | autobot5  | 32C700    | Community Idea AS-011 Votes 1 |
+    | Non-Challenge community - Admin Settings  | autobot5  | 32c700    | Community Idea AS-011 Votes 1 |
+
+  Scenario Outline: ENG-11825 - Site Editor - Verify that a different link color can be selected and it is applied throughout the site (Typing Typing the HEX color)
+    Given I login to "<site>" community with "<user>" user
+    And I click on 'Administration' main menu tab
+    When I click on 'Theme Editor' option on 'Administration' page
+    Then I verify the 'Save' button is disabled on 'Theme Editor' page
+    When I click on the 'Link Color' circle
+    Then I verify the color picker is displayed
+    When I fill in the Hex color field with "<hex_code>" code
+    And I click on 'Ok' button in color picker
+    And I verify the 'Save' button is enabled on 'Theme Editor' page
+    When I click on the 'Save' button on 'Theme Editor' page
+    And I verify "Theme settings saved!" popup message is displayed on 'Theme Editor' page
+    When I click on 'View Ideas' main menu tab
+    And I click on the "<idea_title>" idea on 'View Ideas' page
+    Then I verify the idea's rating has "<hex_code>" color
+    When I click on 'Home' main menu tab
+    Then I verify the navigation bar has "<hex_code>" color
+    And I verify the 'Ideas' tab has "<hex_code>" color
+    When I click on 'Post Idea' main menu tab
+    Then I verify 'Publish' button has "<hex_code>" color
+    When I click on 'Challenges' main menu tab
+    Then I verify that "first" challenge title link color is "<hex_code>" color when hovering a challenge's title
+  @non-challenge
+  Examples:
+    | site                                      | user    | hex_code  | idea_title                    |
+    | Non-Challenge community - Admin Settings  | admin1  | 7da3d6    | Community Idea AS-011 Votes 1 |
