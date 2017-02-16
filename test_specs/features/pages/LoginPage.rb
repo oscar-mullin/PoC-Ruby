@@ -28,8 +28,7 @@ class LoginPage < SitePrism::Page
     password_field.set password
     signin_button.click
     if successful_login
-      @homepage = HomePage.new(".//body[@id='Home']","xpath",10)
-      return @homepage
+      return HomePage.new(".//body[@id='Home']",'xpath',10)
     end
   end
 
