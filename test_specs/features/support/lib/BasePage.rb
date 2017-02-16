@@ -25,6 +25,8 @@ module SitePrism
                 has_link?(locator)
               when 'select' then
                 has_select?(locator)
+              else
+                fail(ArgumentError.new("Locator type #{locator_type} not supported."))
             end
           }
         rescue

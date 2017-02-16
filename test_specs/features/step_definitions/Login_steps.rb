@@ -13,7 +13,7 @@ Given(/^I login to "([^"]*)" community with "([^"]*)" user$/) do |site, user|
   @driverManager.loadUrl(@communityUtil.getCommunityUrl(site))
   @siteutil.setCurrentSite(site)
   @loginpage = LoginPage.new(".//button[text()='Sign In']","xpath",20)
-  @loginpage.loginWithReferences(user)
+  @homepage = @loginpage.loginWithReferences(user)
 end
 
 When(/^I make a Forgot Username request with "([^"]*)" user's email$/) do |user|

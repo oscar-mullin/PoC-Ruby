@@ -47,11 +47,13 @@ And(/^I click on 'Administration' main menu tab$/) do
 end
 
 When(/^I click on 'View Ideas' main menu tab$/) do
-  @viewideaspage = @homepage.clickViewIdeasLink
+  # TODO: Update once the new View Ideas page is ready
+  #@viewideaspage = @homepage.clickViewIdeasLink
 end
 
 And(/^I click on the "([^"]*)" idea on 'View Ideas' page$/) do |idea|
-  @ideaDetailsPage = @viewideaspage.clickIdeaTitleLink(idea)
+  # TODO: Update once the new View Ideas page is ready
+  # @ideaDetailsPage = @viewideaspage.clickIdeaTitleLink(idea)
 end
 
 And(/^I click on 'Site Editor' option on 'Administration' page$/) do |option|
@@ -67,5 +69,6 @@ When(/^I click on 'Home' main menu tab$/) do
 end
 
 When(/^I click on 'Post Idea' main menu tab$/) do
-  @postideapage = @homepage.clickPostIdeaLink
+  # TODO: Update once the new Post Idea page is ready
+  #@postideapage = @homepage.clickPostIdeaLink
 end
