@@ -14,29 +14,17 @@ And(/^I verify that the Navigation bar is centered aligned$/) do
   # TODO - 2/13/2017 - WR - Complete this step on *Create test steps ENG-11827* task
 end
 
-When(/^I click on Navigation Bar Text Color (circle|arrow)$/) do |nav_bar_color|
-    @colorPickerPage = @themeditorpage.clickNavbarTextColorButton
-end
-
-When(/^I select (.*) color from the Color Wheel$/) do |new_color|
-  colorHexCode = @colorPickerPage.selectHexColor
-end
-
-And(/^I verify that the Preview Navigation bar Text Color (is|is not) updated according to the selected color$/) do |display_option|
-  # TODO - 2/13/2017 - WR - Complete this step on *Create test steps ENG-11828* task
+When(/^I click on the Navigation Bar 'Text Color' circle$/) do
+  @colorPickerPage = @themeditorpage.clickNavbarTextColorButton
 end
 
 When(/^I hover over the 'View Ideas' main menu tab$/) do
   @homepage.hoverViewIdeasLink
 end
 
-Then(/^I verify that the Navigation Bar color is displayed 10% darker than the selected Brand (.*) Color$/) do |_|
+Then(/^I verify the selected main menu tab color is displayed (\d+)% darker than the selected color$/) do |percentage|
   brightness_value = @utils.getElementStyleProperty('.navHolder a:hover','filter')[/brightness\((.*)\)/,1]
-  # TODO
-end
-
-When(/^I fill the "Hex Color\#" field with a "(.*)" color code$/) do |new_color|
-  pending
+  expect(100 - (brightness_value.to_f*100)).to eq(percentage.to_i)
 end
 
 And(/^I verify that Link color preview is updated with "([^"]*)" code$/) do |new_color|
@@ -69,23 +57,23 @@ Then(/^I verify the 'Save' button is (enabled|disabled) on 'Theme Editor' page$/
 end
 
 When(/^I click on the 'Brand Color' circle$/) do
-  @colorPickerPage = @themeeditorpage.clickBrandColorButton
+  @colorpickerpage = @themeeditorpage.clickBrandColorButton
 end
 
 When(/^I click on the 'Link Color' circle$/) do
-  @colorPickerPage = @themeeditorpage.clickLinkColorButton
+  @colorpickerpage = @themeeditorpage.clickLinkColorButton
 end
 
 Then(/^I verify the color picker is displayed$/) do
-  expect(@colorPickerPage.has_color_picker_container?).to eq(true)
+  expect(@colorpickerpage.has_color_picker_container?).to eq(true)
 end
 
 When(/^I fill in the Hex color field with "([^"]*)" code$/) do |code|
-  @colorPickerPage.fillHexColorField(code)
+  @colorpickerpage.fillHexColorField(code)
 end
 
 Then(/^I verify Hex color field value is "([^"]*)"$/) do |code|
-  expect(@colorPickerPage.getHexColorFieldValue).to eq(code)
+  expect(@colorpickerpage.getHexColorFieldValue).to eq(code)
 end
 
 When(/^I click on the 'Save' button on 'Theme Editor' page$/) do
@@ -133,5 +121,5 @@ And(/^I verify the navigation bar text has "([^"]*)" color$/) do |color|
 end
 
 And(/^I click on 'Ok' button in color picker$/) do
-  @colorPickerPage.clickOKLink
+  @colorpickerpage.clickOKButton
 end

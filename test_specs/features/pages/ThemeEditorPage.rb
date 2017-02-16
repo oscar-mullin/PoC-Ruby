@@ -17,7 +17,7 @@ class ThemeEditorPage < SitePrism::Page
 
   def clickBrandColorButton
     brand_color_button.click
-    return ColorPickerPage.new('css','.colorpicker',0)
+    return ColorPickerPage.new(".//div[contains(@id,'collorpicker')][contains(@style,'display: block')]",'xpath',1)
   end
 
   ##
@@ -30,7 +30,7 @@ class ThemeEditorPage < SitePrism::Page
 
   def clickButtonTextColorButton
     button_text_color_button.click
-    return ColorPickerPage.new('css','.colorpicker',0)
+    return ColorPickerPage.new(".//div[contains(@id,'collorpicker')][contains(@style,'display: block')]",'xpath',1)
   end
 
   ##
@@ -43,7 +43,7 @@ class ThemeEditorPage < SitePrism::Page
 
   def clickLinkColorButton
     link_color_button.click
-    return ColorPickerPage.new(".//div[contains(@id,'collorpicker')][contains(@style,'display: block')]","xpath",1)
+    return ColorPickerPage.new(".//div[contains(@id,'collorpicker')][contains(@style,'display: block')]",'xpath',1)
   end
 
   ##
@@ -56,7 +56,7 @@ class ThemeEditorPage < SitePrism::Page
 
   def clickNavbarTextColorButton
     navbar_text_color_button.click
-    return ColorPickerPage.new('css','.colorpicker',0)
+    return ColorPickerPage.new(".//div[contains(@id,'collorpicker')][contains(@style,'display: block')]",'xpath',1)
   end
 
   ##
@@ -87,7 +87,9 @@ class ThemeEditorPage < SitePrism::Page
   # @param [String] text    Message to verify
   #
   def verifyMessage(text)
+    within message_container do
       return has_text?(text)
+    end
   end
 
   ##

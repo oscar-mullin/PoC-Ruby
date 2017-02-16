@@ -19,7 +19,7 @@ class ColorPickerPage < SitePrism::Page
     end
   end
 
-  def clickOKLink
+  def clickOKButton
     ok_button.click
   end
 
