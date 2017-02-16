@@ -22,20 +22,17 @@ When(/^I select (.*) color from the Color Wheel$/) do |new_color|
   colorHexCode = @colorPickerPage.selectHexColor
 end
 
-Then(/^I verify that (.*) color from the Color Wheel can be selected$/) do |new_color|
-  # TODO - 2/13/2017 - WR - Complete this step on *Create test steps ENG-11828* task
-end
-
 And(/^I verify that the Preview Navigation bar Text Color (is|is not) updated according to the selected color$/) do |display_option|
   # TODO - 2/13/2017 - WR - Complete this step on *Create test steps ENG-11828* task
 end
 
-When(/^I hover over the Navigation Bar$/) do
-  # TODO - 2/13/2017 - WR - Complete this step on *Create test steps ENG-11828* task
+When(/^I hover over the 'View Ideas' main menu tab$/) do
+  @homepage.hoverViewIdeasLink
 end
 
-Then(/^I verify that the Navigation Bar color is displayed 10% darker than the selected Brand (.*) Color$/) do |new_color|
-  # TODO - 2/13/2017 - WR - Complete this step on *Create test steps ENG-11828* task
+Then(/^I verify that the Navigation Bar color is displayed 10% darker than the selected Brand (.*) Color$/) do |_|
+  brightness_value = @utils.getElementStyleProperty('.navHolder a:hover','filter')[/brightness\((.*)\)/,1]
+  # TODO
 end
 
 When(/^I fill the "Hex Color\#" field with a "(.*)" color code$/) do |new_color|
@@ -117,6 +114,23 @@ And(/^I verify the 'Ideas' tab has "([^"]*)" color$/) do |color|
 end
 
 Then(/^I verify 'Publish' button has "([^"]*)" color$/) do |color|
+  style = @postideapage.getPublishButtonAttribute('style')
+  bg_color = style[/background-color: (.*)\; color/,a]
+  r_value = bg_color[/rgb\((\d+), \d+, \d+, \d+\)/,1].to_i
+  g_value = bg_color[/rgb\(\d+, (\d+), \d+, \d+\)/,1].to_i
+  b_value = bg_color[/rgb\(\d+, \d+, (\d+), \d+\)/,1].to_i
+  hex_color = @utils.getHexColorCode(r_value, g_value, b_value)
+  expect(hex_color).to eq(color)
+end
+
+And(/^I verify the navigation bar text has "([^"]*)" color$/) do |color|
+  bg_color = @homepage.getNavigationBarLinkStyle('color')
+  r_value = bg_color[/rgba\((\d+), \d+, \d+, \d+\)/,1].to_i
+  g_value = bg_color[/rgba\(\d+, (\d+), \d+, \d+\)/,1].to_i
+  b_value = bg_color[/rgba\(\d+, \d+, (\d+), \d+\)/,1].to_i
+  hex_color = @utils.getHexColorCode(r_value, g_value, b_value)
+  expect(hex_color).to eq(color)
+end
 
   # TODO: Update once the new Post Ideas page is ready
 
