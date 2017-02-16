@@ -4,7 +4,7 @@ class AdministrationPage < SitePrism::Page
 
   def clickThemeEditorLink
     theme_editor_link.click
-    return ThemeEditorPage.new('css','#theme-settings .form-section',0)
+    return ThemeEditorPage.new(".//*[@id='contents']//h1[text()='Theme Editor']","xpath",0)
   end
 
 end
