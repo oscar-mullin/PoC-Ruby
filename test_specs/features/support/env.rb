@@ -4,11 +4,13 @@ require 'capybara'
 require 'capybara/cucumber'
 require 'site_prism'
 require 'gmail'
+require 'fastimage'
 
 $browser = ENV['BROWSER'] # IE, CH, FF
 
 Dir::mkdir('output') if not File.directory?('output')
 Dir::mkdir('output/screenshots') if not File.directory?('output/screenshots')
+$is_windows = (RbConfig::CONFIG['host_os'] =~ /mswin|mingw|cygwin/)
 
 # TARGET = local_web, bstack_web
 case ENV['TARGET']

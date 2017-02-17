@@ -58,4 +58,32 @@ class Utils
     return Capybara.current_session.execute_script(script)
   end
 
+  ##
+  # @param [String] file_field  Element for the input field
+  # @param [String] file        File name of the resource to be uploaded
+  #
+  def uploadFile(file_field, file)
+    if $is_windows
+      file_path = File.expand_path("resources/#{file}").gsub('/','\\')
+    else
+      file_path = File.expand_path("resources/#{file}")
+    end
+    if $browser == 'IE' and has_css?('.qq-upload-button>input')
+      page.driver.browser.execute_script("document.querySelector('.qq-upload-button>input').style.opacity='100'")
+    end
+    file_field.set(file_path)
+  end
+
+  ##
+  # @param [String] file        File name of the resource
+  #
+  # @return                     Array with the File dimensions on pixels as [Width, Height]
+  def getFileDimensions(file)
+    if $is_windows
+      file_path = File.expand_path("resources/#{file}").gsub('/','\\')
+    else
+      file_path = File.expand_path("resources/#{file}")
+    end
+    return FastImage.size(file_path)
+  end
 end
