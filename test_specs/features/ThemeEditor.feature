@@ -1,49 +1,46 @@
 Feature: Theme Editor
 
-  @Test
+  @WR
   Scenario Outline: ENG-11827 - Verify that the navigation bar adjusts to the logo's height (Logo's Height 30px)
     Given I login to "<site>" community with "<user>" user
     When I click on 'Administration' main menu tab
     When I click on 'Theme Editor' option on 'Administration' page
-    And I click on 'Change' link on 'Logo' section
-    And I select the "<logo_path>" image
+    And I click on 'Change' link on 'Logo' section and select the "<logo_file>" image
     When I click on the 'Save' button on 'Theme Editor' page
-    Then I verify that the navigation bar moves up to adjust to the height
+    Then I verify that the navigation bar moves up to adjust to the same height of "<logo_file>" image
     And I verify that the Navigation bar is centered aligned
   Examples:
-    | site                                   | user     | logo_path     |
+    | site                                   | user     | logo_file     |
     | Non-Challenge community - Theme Editor | autobot5 | logo_30px.jpg |
     | Challenge community - Theme Editor     | autobot5 | logo_30px.jpg |
 
-  @Test
+  @WR
   Scenario Outline: ENG-11827 - Verify that the navigation bar adjusts to the logo's height (Logo's Height 60px)
     Given I login to "<site>" community with "<user>" user
     When I click on 'Administration' main menu tab
     When I click on 'Theme Editor' option on 'Administration' page
-    And I click on 'Change' link on 'Logo' section
-    And I select the "<logo_path>" image
+    And I click on 'Change' link on 'Logo' section and select the "<logo_file>" image
     When I click on the 'Save' button on 'Theme Editor' page
-    Then I verify that the navigation bar moves up to adjust to the height
+    Then I verify that the navigation bar moves up to adjust to the same height of "<logo_file>" image
     And I verify that the Navigation bar is centered aligned
 
   Examples:
-    | site                                   | user     | logo_path     |
+    | site                                   | user     | logo_file     |
     | Non-Challenge community - Theme Editor | autobot5 | logo_60px.jpg |
     | Challenge community - Theme Editor     | autobot5 | logo_60px.jpg |
 
-  @Test
+  @WR
   Scenario Outline: ENG-11827 - Verify that the navigation bar adjusts to the logo's height (Logo's Height 120px)
     Given I login to "<site>" community with "<user>" user
     When I click on 'Administration' main menu tab
     When I click on 'Theme Editor' option on 'Administration' page
-    And I click on 'Change' link on 'Logo' section
-    And I select the "<logo_path>" image
+    And I click on 'Change' link on 'Logo' section and select the "<logo_file>" image
     When I click on the 'Save' button on 'Theme Editor' page
-    Then I verify that the navigation bar moves up to adjust to the height
+    Then I verify that the navigation bar moves up to adjust to the same height of "<logo_file>" image
     And I verify that the Navigation bar is centered aligned
 
   Examples:
-    | site                                   | user     | logo_path      |
+    | site                                   | user     | logo_file      |
     | Non-Challenge community - Theme Editor | autobot5 | logo_120px.jpg |
     | Challenge community - Theme Editor     | autobot5 | logo_120px.jpg |
 

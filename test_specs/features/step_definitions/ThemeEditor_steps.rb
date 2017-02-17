@@ -1,17 +1,18 @@
-And(/^I click on 'Change' link on 'Logo' section$/) do
-  # TODO - 2/13/2017 - WR - Complete this step on *Create test steps ENG-11827* task
+And(/^I click on 'Change' link on 'Logo' section and select the "([^"]*)" image$/) do |file_name|
+  @themeeditorpage.changeLogoImage(file_name)
 end
 
-And(/^I select the "([^"]*)" image$/) do |image_path|
-  # TODO - 2/13/2017 - WR - Complete this step on *Create test steps ENG-11827* task
-end
-
-Then(/^I verify that the navigation bar moves up to adjust to the height$/) do
-  # TODO - 2/13/2017 - WR - Complete this step on *Create test steps ENG-11827* task
+Then(/^I verify that the navigation bar moves up to adjust to the same height of "([^"]*)" image$/) do |file_name|
+  header_height_value = @utils.getElementStyleProperty('div#headerWrap','height')
+  logo_height_value = "#{@utils.getFileDimensions(file_name)[1]}px"
+  expect(header_height_value).to eq(logo_height_value)
 end
 
 And(/^I verify that the Navigation bar is centered aligned$/) do
-  # TODO - 2/13/2017 - WR - Complete this step on *Create test steps ENG-11827* task
+  navBar_fit = @utils.getElementStyleProperty('div#headerWrap','object-fit')
+  navBar_position = @utils.getElementStyleProperty('div#headerWrap','object-position')
+  expect(navBar_fit).to eq('fill')
+  expect(navBar_position).to eq('50% 50%')
 end
 
 When(/^I click on the Navigation Bar 'Text Color' circle$/) do
