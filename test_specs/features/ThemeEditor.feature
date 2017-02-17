@@ -61,10 +61,11 @@ Feature: Theme Editor
     Then I verify the 'Save' button is enabled on 'Theme Editor' page
     When I click on the 'Save' button on 'Theme Editor' page
     Then I verify "Theme settings saved!" popup message is displayed on 'Theme Editor' page
+    And I verify 'Theme Editor' page is refreshed
     And I verify the navigation bar text has "<hex_code>" color
   Examples:
-    | site                                      | user     | hex_code |
-    | Non-Challenge community - Admin Settings  | autobot5 | 428EFF   |
+    | site                                      | user    | hex_code |
+    | Non-Challenge community - Admin Settings  | admin1  | 428EFF   |
 
   # MV
   Scenario Outline: ENG-11821 - Theme Editor - Verify that a different brand color can be selected and it is applied throughout the site
@@ -92,8 +93,8 @@ Feature: Theme Editor
     Then I verify 'Publish' button has "<hex_code>" color
   @non-challenge
   Examples:
-    | site                                      | user      | hex_code  | idea_title                    |
-    | Non-Challenge community - Admin Settings  | autobot5  | 32c700    | Community Idea AS-011 Votes 1 |
+    | site                                      | user    | hex_code  | idea_title                    |
+    | Non-Challenge community - Admin Settings  | admin1  | 32c700    | Community Idea AS-011 Votes 1 |
 
   Scenario Outline: ENG-11825 - Site Editor - Verify that a different link color can be selected and it is applied throughout the site (Typing Typing the HEX color)
     Given I login to "<site>" community with "<user>" user

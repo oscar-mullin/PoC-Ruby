@@ -6,7 +6,7 @@ class ThemeEditorPage < SitePrism::Page
   element :button_text_color_preview, :xpath, ""
   element :link_color_button, :xpath, ".//div[@class='color-picker-container']/div[@data-type='link']"
   element :link_color_preview, :xpath, ""
-  element :navbar_text_color_button, :xpath, ""
+  element :navbar_text_color_button, '.color-picker.color-nav.nav-bg'
   element :navbar_text_color_preview, :xpath, ""
 
   element :save_button, '.submit-container>button.btn-primary'

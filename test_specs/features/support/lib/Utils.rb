@@ -1,26 +1,31 @@
 class Utils
+  include Capybara::DSL
 
-  def elementExistsOnTime(selector, path, time)
-    wait = Selenium::WebDriver::Wait.new(:timeout => time) # seconds
+  ##
+  # @param [String] locator_type  Locator type
+  # @param [String] locator       Locator path
+  # @param [Integer] time         Time in seconds to wait for the element to show or not
+  # @param [Boolean] is_displayed Whether to verify if the element is displayed or not
+  #
+  def self.elementDisplayedOnTime?(locator_type, locator, time, is_displayed)
+    wait = Selenium::WebDriver::Wait.new(:timeout => time)
     begin
       wait.until {
-        case selector.downcase
+        case locator_type.downcase
           when 'xpath' then
-            has_xpath?(path)
+            is_displayed ? has_xpath?(locator) : has_no_xpath?(locator)
           when 'css' then
-            has_css?(path)
+            is_displayed ? has_css?(locator) : has_no_css?(locator)
           when 'text' then
-            has_text?(path)
+            is_displayed ? has_text?(locator) : has_no_text?(locator)
           when 'button' then
-            has_button?(path)
-          when 'checked_field' then
-            has_checked_field?(path)
+            is_displayed ? has_button?(locator) : has_no_button?(locator)
           when 'field' then
-            has_field?(path)
+            is_displayed ? has_field?(locator) : has_no_field?(locator)
           when 'link' then
-            has_link?(path)
+            is_displayed ? has_link?(locator) : has_no_link?(locator)
           when 'select' then
-            has_select?(path)
+            is_displayed ? has_select?(locator) : has_no_select?(locator)
         end
       }
     rescue
@@ -33,7 +38,7 @@ class Utils
   # @param [Integer] g
   # @param [Integer] b
   #
-  def getHexColorCode(r, g, b)
+  def self.getHexColorCode(r, g, b)
     hex_r = r.to_s(16).rjust(2, '0').upcase
     hex_g = g.to_s(16).rjust(2, '0').upcase
     hex_b = b.to_s(16).rjust(2, '0').upcase
@@ -44,7 +49,7 @@ class Utils
   # @param [String] selector  Element selector
   # @param [String] property  Style property
   #
-  def getElementStyleProperty(selector, property)
+  def self.getElementStyleProperty(selector, property)
     script =  <<-JS
                 var element = document.querySelector('#{selector}');
                 var property_value = window.getComputedStyle(element, null).getPropertyValue('#{property}');
