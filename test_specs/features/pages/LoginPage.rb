@@ -68,8 +68,7 @@ class LoginPage < SitePrism::Page
   end
 
   def verifyMessage(message)
-    @util = Utils.new
-    @util.elementExistsOnTime('css', '.alert-danger', 6)
+    Utils.elementDisplayedOnTime?('css', '.alert-danger', 6, true)
     within errormessage_container do
       return has_text?(message)
     end

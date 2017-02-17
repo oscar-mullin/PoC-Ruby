@@ -4,7 +4,7 @@ class HomePage < SitePrism::Page
   element :administration_link, :xpath, ".//a[@href='/Page/Administration']"
   element :view_ideas_link, :xpath, ".//a[@href='/Page/ViewIdeas']"
   element :post_idea_link, :xpath, ".//a[@href='/Page/PostIdea']"
-  element :navigation_bar_container, '.navHolder.enhanced'
+  element :navigation_bar_container, 'nav>.navHolder'
 
   def clickHomeLink
     home_link.click
@@ -14,7 +14,7 @@ class HomePage < SitePrism::Page
 
   def clickAdministrationLink
     administration_link.click
-    return AdministrationPage.new('css','table.admin div.thumbnailsm',0)
+    return AdministrationPage.new('table.admin div.thumbnailsm','css',5)
   end
 
   def clickViewIdeasLink

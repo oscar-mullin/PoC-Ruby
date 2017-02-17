@@ -15,7 +15,7 @@ And(/^I verify that the Navigation bar is centered aligned$/) do
 end
 
 When(/^I click on the Navigation Bar 'Text Color' circle$/) do
-  @colorPickerPage = @themeditorpage.clickNavbarTextColorButton
+  @colorpickerpage = @themeeditorpage.clickNavbarTextColorButton
 end
 
 When(/^I hover over the 'View Ideas' main menu tab$/) do
@@ -23,7 +23,7 @@ When(/^I hover over the 'View Ideas' main menu tab$/) do
 end
 
 Then(/^I verify the selected main menu tab color is displayed (\d+)% darker than the selected color$/) do |percentage|
-  brightness_value = @utils.getElementStyleProperty('.navHolder a:hover','filter')[/brightness\((.*)\)/,1]
+  brightness_value = Utils.getElementStyleProperty('.navHolder a:hover','filter')[/brightness\((.*)\)/,1]
   expect(100 - (brightness_value.to_f*100)).to eq(percentage.to_i)
 end
 
@@ -43,7 +43,7 @@ Then(/^I verify that "([^"]*)" challenge title link color is "([^"]*)" color whe
   # r_value = bg_color[/rgb\((\d+), \d+, \d+, \d+\)/,1].to_i
   # g_value = bg_color[/rgb\(\d+, (\d+), \d+, \d+\)/,1].to_i
   # b_value = bg_color[/rgb\(\d+, \d+, (\d+), \d+\)/,1].to_i
-  # hex_color = @utils.getHexColorCode(r_value, g_value, b_value)
+  # hex_color = Utils.getHexColorCode(r_value, g_value, b_value)
   # expect(hex_color).to_eq(color)
 end
 
@@ -93,7 +93,7 @@ Then(/^I verify the navigation bar has "([^"]*)" color$/) do |color|
   r_value = bg_color[/rgba\((\d+), \d+, \d+, \d+\)/,1].to_i
   g_value = bg_color[/rgba\(\d+, (\d+), \d+, \d+\)/,1].to_i
   b_value = bg_color[/rgba\(\d+, \d+, (\d+), \d+\)/,1].to_i
-  hex_color = @utils.getHexColorCode(r_value, g_value, b_value)
+  hex_color = Utils.getHexColorCode(r_value, g_value, b_value)
   expect(hex_color).to eq(color)
 end
 
@@ -107,7 +107,7 @@ Then(/^I verify 'Publish' button has "([^"]*)" color$/) do |color|
   r_value = bg_color[/rgb\((\d+), \d+, \d+, \d+\)/,1].to_i
   g_value = bg_color[/rgb\(\d+, (\d+), \d+, \d+\)/,1].to_i
   b_value = bg_color[/rgb\(\d+, \d+, (\d+), \d+\)/,1].to_i
-  hex_color = @utils.getHexColorCode(r_value, g_value, b_value)
+  hex_color = Utils.getHexColorCode(r_value, g_value, b_value)
   expect(hex_color).to eq(color)
 end
 
@@ -116,10 +116,15 @@ And(/^I verify the navigation bar text has "([^"]*)" color$/) do |color|
   r_value = bg_color[/rgba\((\d+), \d+, \d+, \d+\)/,1].to_i
   g_value = bg_color[/rgba\(\d+, (\d+), \d+, \d+\)/,1].to_i
   b_value = bg_color[/rgba\(\d+, \d+, (\d+), \d+\)/,1].to_i
-  hex_color = @utils.getHexColorCode(r_value, g_value, b_value)
+  hex_color = Utils.getHexColorCode(r_value, g_value, b_value)
   expect(hex_color).to eq(color)
 end
 
 And(/^I click on 'Ok' button in color picker$/) do
   @colorpickerpage.clickOKButton
+end
+
+And(/^I verify 'Theme Editor' page is refreshed$/) do
+  Utils.elementDisplayedOnTime?('css','#theme-settings .form-section',5,false)
+  Utils.elementDisplayedOnTime?('css','#theme-settings .form-section',5,true)
 end

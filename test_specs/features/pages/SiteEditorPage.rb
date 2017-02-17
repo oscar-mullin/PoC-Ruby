@@ -28,12 +28,12 @@ class SiteEditorPage < SitePrism::Page
       @yoffset = 50
     end
 
-    if @util.elementExistsOnTime('xpath'," #{widget_name} ", 1) then
+    if Utils.elementDisplayedOnTime?('xpath'," #{widget_name} ", 1, true) then
       @elementsource = find(:xpath, "#{widget_name}")
       dragDropElement(@elementsource, @xoffset, @yoffset, @targetelement)
       selenium_webdriver = page.driver.browser
       selenium_webdriver.action.click_and_hold(@elementsource.native).move_to(@targetelement.native, @xoffset, @yoffset).release(@targetelement.native).perform
-      if @util.elementExistsOnTime('xpath'," #{widget_name} ", 1) then
+      if Utils.elementDisplayedOnTime?('xpath'," #{widget_name} ", 1, true) then
         save_button.click
       else
         fail(ArgumentError.new("Widget #{widget_name} was not added."))
@@ -45,9 +45,9 @@ class SiteEditorPage < SitePrism::Page
 
   def deleteWidget(widget_name)
     unless widget_name==""
-      if @util.elementExistsOnTime('xpath'," #{widget_name} ", 1) then
+      if Utils.elementDisplayedOnTime?('xpath'," #{widget_name} ", 1, true) then
         find(:xpath, "#{widget_name}").click
-        if not(@util.elementExistsOnTime('xpath'," #{widget_name} ", 1)) then
+        if Utils.elementDisplayedOnTime?('xpath'," #{widget_name} ", 1, false) then
           save_button.click
         else
           fail(ArgumentError.new("Widget #{widget_name} was not deleted."))
@@ -62,7 +62,7 @@ class SiteEditorPage < SitePrism::Page
 
     rolesArr = roles_list.split(",")
 
-    if @util.elementExistsOnTime('xpath'," #{widget_name} ", 1) then
+    if Utils.elementDisplayedOnTime?('xpath'," #{widget_name} ", 1, true) then
       find(:xpath, "#{widget_name}").click
 
       rolesArr.each do |role|
