@@ -72,3 +72,20 @@ When(/^I click on 'Post Idea' main menu tab$/) do
   # TODO: Update once the new Post Idea page is ready
   #@postideapage = @homepage.clickPostIdeaLink
 end
+
+When(/^I click on 'Create Community' option on 'Administration' page$/) do
+  @createcommunitypage = @administrationpage.clickCreateCommunityLink
+end
+
+And(/^I press "([^"]*)" key$/) do |key|
+  current_element = page.driver.browser.switch_to.active_element
+  current_element.send_keys key.to_sym
+end
+
+And(/^I click on 'Site Themes and Access Settings' option on 'Administration' page$/) do
+  @sitethemesaccesssettingspage = @administrationpage.clickSiteThemesAccessSettingsLink
+end
+
+Then(/^I verify the user is redirected to the "([^"]*)" community's 'Home' page$/) do |url|
+  #TODO:Update once new Home page is ready
+end
