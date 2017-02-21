@@ -32,9 +32,6 @@ class CreateCommunityPage < SitePrism::Page
 
   element :create_community_button, '#createCommunity'
 
-
-  element :site_in_use_error_label, :xpath, ".//*[text()='Name in use, please enter another']"
-
   ##
   # @param [String] url   URL for the new community to be created
   #
@@ -105,6 +102,50 @@ class CreateCommunityPage < SitePrism::Page
   #
   def fillCommunityTagsField(value)
     comm_tags_field.set value
+  end
+
+  def clickInheritSiteConfigSelectTemplateLink
+    within inherit_siteconfig_from_container do
+      select_template_siteconfig_link.click
+    end
+    return SelectCommunityPopup.new('#communityTreeDialog>.community-tree','css',3)
+  end
+
+  def clickInheritSiteConfigSelectCommLink
+    within inherit_siteconfig_from_container do
+      select_comm_siteconfig_link.click
+    end
+    return SelectCommunityPopup.new('#communityTreeDialog>.community-tree','css',3)
+  end
+
+  ##
+  # @param [String] text    Text to verify
+  #
+  def verifyInheritSiteConfigText(text)
+    within inherit_siteconfig_from_container do
+      return has_text?(text)
+    end
+  end
+
+  ##
+  # @param [String] option   Yes, or No
+  #
+  def selectSaveTemplateOption(option)
+    choose(option)
+  end
+
+  ##
+  # @param [String] value   Template title
+  #
+  def fillTemplateTitleField(value)
+    template_title_field.set value
+  end
+
+  ##
+  # @param [String] value   Template description
+  #
+  def fillTemplateDescriptionField(value)
+    template_desc_textarea.set value
   end
 
   ##
