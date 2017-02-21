@@ -6,6 +6,7 @@ class AdministrationPage < SitePrism::Page
   element :manage_community_link, :xpath, ".//a[@href='/Admin/Dashboard?orig_url=%2FAdmin%2FManageSitePage"
   element :idea_template_editor_link, :xpath, ".//a[@href='/Admin/IdeaTemplateEditor"
   element :permissions_link, :xpath, ".//a[@href='/Admin/Dashboard?orig_url=%2FAdmin%2FPermissions%3Fpagename%3Dpermissions"
+  element :idea_management_link, :xpath, ".//a[@href='/Admin/Dashboard?orig_url=%2FAdmin%2FConfiguration%3Fsection%3DideaManagement"
 
   def clickThemeEditorLink
     theme_editor_link.click
@@ -35,6 +36,11 @@ class AdministrationPage < SitePrism::Page
   def clickPermissionsLink
     permissions_link.click
     return PermissionsPage.new('','',5)
+  end
+
+  def clickIdeaManagementLink
+    idea_management_link.click
+    return IdeaManagementPage.new('','',5)
   end
 
 end

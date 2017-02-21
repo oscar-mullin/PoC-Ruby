@@ -82,6 +82,8 @@ Feature: Create Community
     Then I verify the 'Innovation Market' main menu tab is displayed
     And I verify the 'Post Idea' main menu tab is not displayed
     # Admin Setting > Idea Management
+    When I click on 'Administration' main menu tab
+    And I click on 'Idea Management' option on 'Administration' page
     And I verify 'Owner Can Delete Idea' setting is enabled on 'Idea Management' administration page
     # Admin Setting > Idea Template Editor
     When I click on 'Administration' main menu tab
@@ -157,7 +159,7 @@ Feature: Create Community
     Then I verify the settings configured on the theme editor (Brand Color, Button Text Color, Link Color ) of the parent community are applied to the new challenge
     When I click on 'Administration' main menu tab
     When I click on 'Theme Editor' option on 'Administration' page
-    #
+    # Break down in the different verifications needed
     Then I verify the same customized settings of the parent community are displayed
   Examples:
     | site                                      | user        |
