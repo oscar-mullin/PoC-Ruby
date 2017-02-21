@@ -6,6 +6,7 @@ class HomePage < SitePrism::Page
   element :post_idea_link, :xpath, ".//a[@href='/Page/PostIdea']"
   element :navigation_bar_container, 'nav>.navHolder'
 
+
   def clickHomeLink
     home_link.click
     # TODO: Update once the new Home page is ready
@@ -46,4 +47,5 @@ class HomePage < SitePrism::Page
   def hoverViewIdeasLink
     view_ideas_link.hover
   end
+
 end
