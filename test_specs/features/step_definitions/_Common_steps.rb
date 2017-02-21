@@ -102,6 +102,10 @@ And(/^I verify the 'Post Idea' main menu tab (is|is not) displayed$/) do
   pending
 end
 
+And(/^I click on 'Idea Management' option on 'Administration' page$/) do
+  @ideamanagementpage = @administrationpage.clickIdeaManagementLink
+end
+
 And(/^I click on 'Idea Template Editor' option on 'Administration' page$/) do
   @ideatemplateeditorpage = @administrationpage.clickIdeaTemplateEditorLink
 end
@@ -126,6 +130,7 @@ And(/^I verify "([^"]*)" option is selected in 'Permission Settings for Category
   pending
 end
 
-And(/^I verify 'Owner Can Delete Idea' setting is enabled on 'Idea Management' administration page$/) do
-  pending
+And(/^I verify 'Owner Can Delete Idea' setting is (enabled|disabled) on 'Idea Management' administration page$/) do |enabled|
+  is_enabled = enabled == 'enabled'
+  expect(@ideamanagementpage.ownerCanDeleteIdeaEnabled?).to eq(is_enabled)
 end
