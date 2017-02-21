@@ -60,10 +60,6 @@ And(/^I click on 'Site Editor' option on 'Administration' page$/) do |option|
   # TODO - 2/10/2017 - WR - Complete this step on *Create test steps ENG-10487* task
 end
 
-And(/^I click on the "([^"]*)" (link|tab) on "([^"]*)" page$/) do |link, object, page|
-  # TODO - 2/10/2017 - WR - Complete this step on *Create test steps ENG-10487* task
-end
-
 When(/^I click on 'Home' main menu tab$/) do
   @homepage = @homepage.clickHomeLink
 end
@@ -88,4 +84,48 @@ end
 
 Then(/^I verify the user is redirected to the "([^"]*)" community's 'Home' page$/) do |url|
   #TODO:Update once new Home page is ready
+end
+
+And(/^I click on 'Manage Community' option on 'Administration' page$/) do
+  @managecommunitypage = @administrationpage.clickManageCommunityLink
+end
+
+When(/^I click on 'Innovation Market' main menu tab$/) do
+  @innovationmarketpage = @homepage.clickInnovationMarketLink
+end
+
+Then(/^I verify the 'Innovation Market' main menu tab (is|is not) displayed$/) do
+  pending
+end
+
+And(/^I verify the 'Post Idea' main menu tab (is|is not) displayed$/) do
+  pending
+end
+
+And(/^I click on 'Idea Template Editor' option on 'Administration' page$/) do
+  @ideatemplateeditorpage = @administrationpage.clickIdeaTemplateEditorLink
+end
+
+Then(/^I verify "([^"]*)" (field|fields) (is|are) displayed on 'Idea Template Editor' page$/) do |fields_list, _, _|
+  pending
+end
+
+And(/^I verify "([^"]*)" user has "([^"]*)" role$/) do |user, role|
+  pending
+end
+
+And(/^I click on 'Permissions' option on 'Administration' page$/) do
+  @permissionspage = @administrationpage.clickPermissionsLink
+end
+
+And(/^I verify "([^"]*)" option is selected in 'Permission Settings for Category Thread > Post Permissions' list on 'Permission Settings' page$/) do |option|
+  pending
+end
+
+And(/^I verify "([^"]*)" option is selected in 'Permission Settings for Category Comment > Post Permissions' list on 'Permission Settings' page$/) do |option|
+  pending
+end
+
+And(/^I verify 'Owner Can Delete Idea' setting is enabled on 'Idea Management' administration page$/) do
+  pending
 end

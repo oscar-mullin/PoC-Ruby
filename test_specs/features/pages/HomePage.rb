@@ -4,7 +4,8 @@ class HomePage < SitePrism::Page
   element :administration_link, :xpath, ".//a[@href='/Page/Administration']"
   element :view_ideas_link, :xpath, ".//a[@href='/Page/ViewIdeas']"
   element :post_idea_link, :xpath, ".//a[@href='/Page/PostIdea']"
-  element :navigation_bar_container, 'nav>.navHolder'
+  element :post_idea_link, :xpath, ".//a[@href='/Page/PostIdea']"
+  element :innovation_market_link, ".//a[@href='/Page/InnovationMarket']"
 
 
   def clickHomeLink
@@ -48,4 +49,8 @@ class HomePage < SitePrism::Page
     view_ideas_link.hover
   end
 
+  def clickInnovationMarketLink
+    innovation_market_link.click
+    return InnovationMarketPage.new('.communitylist>tbody>tr','csss',3)
+  end
 end
