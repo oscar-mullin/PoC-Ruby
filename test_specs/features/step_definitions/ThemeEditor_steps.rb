@@ -19,6 +19,14 @@ When(/^I click on the Navigation Bar 'Text Color' circle$/) do
   @colorpickerpage = @themeeditorpage.clickNavbarTextColorButton
 end
 
+When(/^I click on Navigation Bar Text Color (circle|arrow)$/) do |nav_bar_color|
+    @colorPickerPage = @themeditorpage.clickNavbarTextColorButton
+end
+
+And(/^I verify that the Preview Navigation bar Text Color (is|is not) updated according to the selected color$/) do |display_option|
+  # TODO - 2/13/2017 - WR - Complete this step on *Create test steps ENG-11828* task
+end
+
 When(/^I hover over the 'View Ideas' main menu tab$/) do
   @homepage.hoverViewIdeasLink
 end

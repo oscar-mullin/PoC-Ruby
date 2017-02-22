@@ -93,6 +93,7 @@ Feature: Theme Editor
     | site                                      | user    | hex_code  | idea_title                    |
     | Non-Challenge community - Admin Settings  | admin1  | 32c700    | Community Idea AS-011 Votes 1 |
 
+  # FA
   Scenario Outline: ENG-11825 - Site Editor - Verify that a different link color can be selected and it is applied throughout the site (Typing Typing the HEX color)
     Given I login to "<site>" community with "<user>" user
     And I click on 'Administration' main menu tab
