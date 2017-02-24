@@ -22,8 +22,8 @@ Proof of concept for the **Spigit INC.** Web Automation Framework using Selenium
 #### Required Gems
 In order to install all necessary gems for this project, you should install bundle and install all files form Gemfile, follow below steps to complete this process:
 
- - Install Bundle, open a command console and navigate to **test_specs** folder and execute below commands
- 
+ - Install Bundle and project Gems, open a command console, navigate to **test_specs** folder and execute below commands:
+
         gem install bundler
         bundle install
 

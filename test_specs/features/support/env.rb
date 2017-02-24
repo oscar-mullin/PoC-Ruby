@@ -4,11 +4,13 @@ require 'capybara'
 require 'capybara/cucumber'
 require 'site_prism'
 require 'gmail'
+require 'fastimage'
 
 $browser = ENV['BROWSER'] # IE, CH, FF
 
 Dir::mkdir('output') if not File.directory?('output')
 Dir::mkdir('output/screenshots') if not File.directory?('output/screenshots')
+$is_windows = (RbConfig::CONFIG['host_os'] =~ /mswin|mingw|cygwin/)
 
 # TARGET = local_web, bstack_web
 case ENV['TARGET']
@@ -113,6 +115,7 @@ After do |scenario|
     sw.save_screenshot(screenshot)
   end
 
+  page.driver.quit
   # NOTE: Removed since a report shouldn't be generated after each process ends, the report should only be generated once the last process has ended
   # at_exit do
   #   options = {

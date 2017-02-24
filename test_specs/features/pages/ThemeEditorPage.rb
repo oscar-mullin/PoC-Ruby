@@ -1,23 +1,31 @@
 class ThemeEditorPage < SitePrism::Page
 
-  element :brand_color_button, :xpath, ""
+  element :brand_color_button, '.color-picker.color-brand.brand-bg'
   element :brand_color_preview, :xpath, ""
   element :button_text_color_button, :xpath, ""
   element :button_text_color_preview, :xpath, ""
-  element :link_color_button, :xpath, ""
+  element :link_color_button, :xpath, ".//div[@class='color-picker-container']/div[@data-type='link']"
   element :link_color_preview, :xpath, ""
-  element :navbar_text_color_button, :xpath, ""
+  element :navbar_text_color_button, '.color-picker.color-nav.nav-bg'
   element :navbar_text_color_preview, :xpath, ""
+  element :link_change_logo, :xpath, ".//div[h3[contains(text(),'Logo')]]//input"
 
-  element :save_button, :xpath, ""
+  element :save_button, '.submit-container>button.btn-primary'
   element :save_and_apply_button, :xpath, ""
   element :confirm_continue_link, :xpath, ""
   element :confirm_cancel_link, :xpath, ""
-  element :message_container, :xpath, ""
+  element :message_container, '.popup-notice'
 
   def clickBrandColorButton
     brand_color_button.click
-    return ColorPickerPage.new('','',0)
+    return ColorPickerPage.new(".//div[contains(@id,'collorpicker')][contains(@style,'display: block')]",'xpath',1)
+  end
+
+  ##
+  # @param [String] file_name   File name of the new logo image
+  #
+  def changeLogoImage(file_name)
+     @utils.uploadFile(link_change_logo, file_name)
   end
 
   ##
@@ -30,7 +38,7 @@ class ThemeEditorPage < SitePrism::Page
 
   def clickButtonTextColorButton
     button_text_color_button.click
-    return ColorPickerPage.new('','',0)
+    return ColorPickerPage.new(".//div[contains(@id,'collorpicker')][contains(@style,'display: block')]",'xpath',1)
   end
 
   ##
@@ -43,7 +51,7 @@ class ThemeEditorPage < SitePrism::Page
 
   def clickLinkColorButton
     link_color_button.click
-    return ColorPickerPage.new('','',0)
+    return ColorPickerPage.new(".//div[contains(@id,'collorpicker')][contains(@style,'display: block')]",'xpath',1)
   end
 
   ##
@@ -56,7 +64,7 @@ class ThemeEditorPage < SitePrism::Page
 
   def clickNavbarTextColorButton
     navbar_text_color_button.click
-    return ColorPickerPage.new('','',0)
+    return ColorPickerPage.new(".//div[contains(@id,'collorpicker')][contains(@style,'display: block')]",'xpath',1)
   end
 
   ##

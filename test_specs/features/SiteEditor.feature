@@ -5,9 +5,7 @@ Feature: Site Editor
     Given I login to "<site>" community with "<user>" user
     When I click on 'Administration' main menu tab
     When I click on 'Site Editor' option on 'Administration' page
-    And I click on the 'Home' link
-    And I select 'Content' tab
-    And I expand the first 'Select Widget' dropdown
+    And I select 'Home' option from 'Select Page' dropdown
     Then I verify that 'approval_task' widget is not displayed
     And I verify that 'blog_tags' widget is not displayed
     And I verify that 'bookmarked_ideas_widget' widget is not displayed

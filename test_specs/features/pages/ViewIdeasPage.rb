@@ -1,12 +1,14 @@
 class ViewIdeasPage < SitePrism::Page
 
+  # TODO: Update once the new View Ideas page is ready
   element :ideas_list_container, :xpath, ""
 
   def clickIdeaTitleLink(idea)
-    within ideas_list_container do
-      click_link(idea)
-    end
-    return IdeaDetailsPage.new('','',0)
+    # TODO: Update once the new View Ideas page is ready
+    # within ideas_list_container do
+    #   click_link(idea)
+    # end
+    # return IdeaDetailsPage.new('','',0)
   end
 
 end
