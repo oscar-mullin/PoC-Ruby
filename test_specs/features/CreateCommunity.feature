@@ -90,6 +90,8 @@ Feature: Create Community
     And I click on 'Idea Template Editor' option on 'Administration' page
     Then I verify "Text Field" field is displayed on 'Idea Template Editor' page
     # User Roles
+    When I click on 'Administration' main menu tab
+    And I click on 'Users' option on 'Administration' page
     And I verify "<user_1>" user has "<role_1>" role
     And I verify "<user_2>" user has "<role_2>" role
     # Permissions
