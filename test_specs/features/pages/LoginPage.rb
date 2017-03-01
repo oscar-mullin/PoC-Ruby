@@ -34,13 +34,13 @@ class LoginPage < SitePrism::Page
 
   def loginWithReferences(user)
     @userUtil = UserUtil.new
-    login(@userUtil.getUser(user,'username'), @userUtil.getUser(user,'password'), true)
+    login(@userUtil.getUserInfo(user,'username'), @userUtil.getUserInfo(user,'password'), true)
   end
 
   def makeForgotUsernameRequest(user)
     @userUtil = UserUtil.new
     reset_username_link.click
-    forgotusername_email_field.set @userUtil.getUser(user,'email')
+    forgotusername_email_field.set @userUtil.getUserInfo(user,'email')
     submit_button.click
   end
 
@@ -53,7 +53,7 @@ class LoginPage < SitePrism::Page
   def makeForgotPasswordRequest(user)
     @userUtil = UserUtil.new
     reset_password_link.click
-    forgotpwdusername_field.set @userUtil.getUser(user,'username')
+    forgotpwdusername_field.set @userUtil.getUserInfo(user,'username')
     submit_button.click
   end
 

@@ -439,11 +439,11 @@ class UserUtil
     @@currentUser = user
   end
 
-  def getUser(user, info)
+  def getUserInfo(user, info)
     @@users[user][info]
   end
 
-  def addUser(user, info, value)
+  def addUserInfo(user, info, value)
     @@users[user][info] = value
   end
 

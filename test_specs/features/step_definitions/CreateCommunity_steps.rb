@@ -107,5 +107,7 @@ Then(/^I verify "([^"]*)" title is displayed next to "([^"]*)" community on 'Man
 end
 
 Then(/^I verify "([^"]*)" (category|categories) (is|are) displayed on 'Innovation Market' page$/) do |categories_list, _, _|
-  pending
+  categories_list.split(',').each do |category|
+    expect(@innovationmarketpage.categoryIsListed?(category)).to eq(true)
+  end
 end

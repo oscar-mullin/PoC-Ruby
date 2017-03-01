@@ -26,7 +26,7 @@ end
 
 And(/^I verify "([^"]*)" text is displayed on the '(Forgot Username|Forgot Password)' page$/) do |text, _|
   if text.include?('Sent to')
-    user_email = @userUtil.getUser(text[/user\((.*)\)/,1],'email')
+    user_email = @userUtil.getUserInfo(text[/user\((.*)\)/,1],'email')
     final_text = text.gsub(text[/(\[.*\])....@/,1], user_email[0,1])
     final_text = final_text.gsub(final_text[/@(\[.*\])/,1], user_email[/@(.*)/,1])
   end
@@ -38,15 +38,15 @@ And(/^I verify that 'Return to (login|sign in)' link is displayed in '(Forgot Us
 end
 
 And(/^I verify "([^"]*)" user received an email with "([^"]*)" subject$/) do |user, subject|
-  emailacc = @userUtil.getUser(user,'email')
-  emailpsw = @userUtil.getUser(user,'emailpsw')
+  emailacc = @userUtil.getUserInfo(user,'email')
+  emailpsw = @userUtil.getUserInfo(user,'emailpsw')
   match = emailacc[/\+(.*?)@/m]
   emailacc = emailacc.gsub(match,'@') unless match.nil? #retrieving mail w/o alias
   emailmanager = EmailManager.new
 
   case subject
     when 'Username Request','Reset Password Request' then
-      @inboxemails = emailmanager.getNoEmailsByContent(10, emailacc, emailpsw, subject, @userUtil.getUser(user,'username'))
+      @inboxemails = emailmanager.getNoEmailsByContent(10, emailacc, emailpsw, subject, @userUtil.getUserInfo(user,'username'))
     else
       fail(ArgumentError.new("'#{subject}' is not listed!"))
   end

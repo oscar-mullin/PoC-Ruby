@@ -1,8 +1,8 @@
 And(/^I fill in "([^"]*)" field with the "([^"]*)"'s (.*) on "([^"]*)" page$/) do |field, user, info, page|
   if info == 'fullname'
-    value = "#{@userUtil.getUser(user,'firstname')} #{@userUtil.getUser(user,'lastname')}"
+    value = "#{@userUtil.getUserInfo(user,'firstname')} #{@userUtil.getUserInfo(user,'lastname')}"
   else
-    value = @userUtil.getUser(user, info)
+    value = @userUtil.getUserInfo(user, info)
   end
   case page
     when 'Login' then
@@ -94,12 +94,14 @@ When(/^I click on 'Innovation Market' main menu tab$/) do
   @innovationmarketpage = @homepage.clickInnovationMarketLink
 end
 
-Then(/^I verify the 'Innovation Market' main menu tab (is|is not) displayed$/) do
-  pending
+Then(/^I verify the 'Innovation Market' main menu tab (is|is not) displayed$/) do |displayed|
+  is_displayed = displayed == 'is'
+  expect(@homepage.has_innovation_market_link?).to eq(is_displayed)
 end
 
-And(/^I verify the 'Post Idea' main menu tab (is|is not) displayed$/) do
-  pending
+And(/^I verify the 'Post Idea' main menu tab (is|is not) displayed$/) do |displayed|
+  is_displayed = displayed == 'is'
+  expect(@homepage.has_post_idea_link?).to eq(is_displayed)
 end
 
 And(/^I click on 'Idea Management' option on 'Administration' page$/) do
@@ -110,12 +112,19 @@ And(/^I click on 'Idea Template Editor' option on 'Administration' page$/) do
   @ideatemplateeditorpage = @administrationpage.clickIdeaTemplateEditorLink
 end
 
+And(/^I click on 'Users' option on 'Administration' page$/) do
+  @userspage = @administrationpage.clickUsersLink
+end
+
 Then(/^I verify "([^"]*)" (field|fields) (is|are) displayed on 'Idea Template Editor' page$/) do |fields_list, _, _|
-  pending
+  fields_list.split(',').each do |field_label|
+    expect(@ideatemplateeditorpage.fieldDisplayed?(field_label)).to eq(true)
+  end
 end
 
 And(/^I verify "([^"]*)" user has "([^"]*)" role$/) do |user, role|
-  pending
+  username = @userUtil.getUserInfo(user,'username')
+  @userspage.userHasRole?(username,role)
 end
 
 And(/^I click on 'Permissions' option on 'Administration' page$/) do
@@ -123,11 +132,11 @@ And(/^I click on 'Permissions' option on 'Administration' page$/) do
 end
 
 And(/^I verify "([^"]*)" option is selected in 'Permission Settings for Category Thread > Post Permissions' list on 'Permission Settings' page$/) do |option|
-  pending
+  expect(@permissionspage.catThreadPostPermissionsOptionSelected?(option)).to eq(true)
 end
 
 And(/^I verify "([^"]*)" option is selected in 'Permission Settings for Category Comment > Post Permissions' list on 'Permission Settings' page$/) do |option|
-  pending
+  expect(@permissionspage.catCommentPostPermissionsOptionSelected?(option)).to eq(true)
 end
 
 And(/^I verify 'Owner Can Delete Idea' setting is (enabled|disabled) on 'Idea Management' administration page$/) do |enabled|
